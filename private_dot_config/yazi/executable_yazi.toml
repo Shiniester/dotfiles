@@ -14,7 +14,7 @@ show_hidden = false
 show_symlink = true
 scrolloff = 5
 mouse_events = ["click", "scroll"]
-title_format   = "Yazi: {cwd}"
+title_format = "Yazi: {cwd}"
 
 [preview]
 tab_size = 2
@@ -48,7 +48,7 @@ reveal = [
   { run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
 ]
 extract = [
-  { run = 'unzip -O gb18030 "$@"', desc = "Extract here with GB ", for = "unix" },
+  { run = 'unar "$@"', desc = "Extract here with unar", for = "unix" },
   { run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
   { run = '7z x %* -o.', desc = "Extract here with 7-Zip", for = "windows" },
   { run = 'ya pub extract --list %*', desc = "Extract here", for = "windows" },
@@ -236,14 +236,14 @@ sort_translit = false
 enabled = false
 
 [[plugin.prepend_fetchers]]
-id   = "git"
+id = "git"
 name = "*"
-run  = "git"
+run = "git"
 
 [[plugin.prepend_fetchers]]
-id   = "git"
+id = "git"
 name = "*/"
-run  = "git"
+run = "git"
 
 [[plugin.prepend_previewers]]
 id = "eza-preview"
