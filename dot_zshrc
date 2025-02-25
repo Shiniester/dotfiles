@@ -130,6 +130,13 @@ function y() {
 }
 
 # ros
+
+ros_noetic() {
+    export ROS_VERSION=1
+    export ROS_PYTHON_VERSION=2
+    export ROS_DISTRO=noetic
+    source /opt/ros/noetic/setup.zsh
+}
 ros_kinetic() {
     export ROS_VERSION=1
     export ROS_PYTHON_VERSION=2
@@ -159,7 +166,7 @@ export PATH=/opt/cuda/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/opt/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 # Aliases
-alias ls='eza --icons=auto'
+alias lse='eza --icons=auto'
 alias lst='eza -T --icons=auto'
 alias c='clear'
 alias v='nvim'
