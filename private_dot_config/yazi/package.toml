@@ -1,0 +1,12 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "cb6165b"
+hash = "812fd49667ab6823250f0411f8cf793a"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-filter"
+rev = "cb6165b"
+hash = "f0c4b41b5d19a3144958383333eff6e7"
+
+[flavor]
+deps = []

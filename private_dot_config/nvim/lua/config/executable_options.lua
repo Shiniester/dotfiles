@@ -24,7 +24,7 @@ vim.opt.textwidth = 80
 -- default value is 4000, lower value to improve performance of fittencode
 -- vim.opt.updatetime = 200
 -- keep cursor center
--- vim.o.scrolloff = 20
+vim.opt.scrolloff = 20
 -- define zsh
 local zsh_options = {
   shell = vim.fn.executable("zsh") == 1 and "zsh" or vim.o.shell, -- 检查 Zsh 是否可用，如果可用则使用，否则保持默认

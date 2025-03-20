@@ -119,6 +119,9 @@ eval "$(zoxide init --cmd cd zsh)"
 # starship
 eval "$(starship init zsh)"
 
+# direnv
+eval "$(direnv hook zsh)"
+
 # yazi
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
@@ -165,6 +168,9 @@ wd() {
 export PATH=/opt/cuda/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/opt/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
+# conda
+export PATH="/opt/miniconda3/bin:$PATH"
+
 # Aliases
 alias lse='eza --icons=auto'
 alias lst='eza -T --icons=auto'
@@ -174,7 +180,6 @@ alias q='exit'
 alias df='duf'
 alias update='sudo pacman -Syu'
 alias copy='wl-copy'
-alias activate='poetry shell'
 
 alias gitg= 'git log --graph --all --oneline'
 

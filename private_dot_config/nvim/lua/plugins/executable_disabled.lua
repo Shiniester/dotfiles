@@ -1,3 +1,4 @@
 return {
-	{ "catppuccin", enabled = false },
+  { "catppuccin", enabled = false },
+  { "luozhiya/fittencode.nvim", enabled = false },
 }
