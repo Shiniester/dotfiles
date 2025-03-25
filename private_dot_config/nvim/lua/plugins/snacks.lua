@@ -10,7 +10,7 @@ return {
     },
     terminal = {
       win = {
-        position = "right",
+        position = "bottom",
         border = "rounded",
       },
     },
