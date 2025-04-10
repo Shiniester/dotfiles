@@ -26,19 +26,19 @@ vim.opt.textwidth = 80
 -- keep cursor center
 vim.opt.scrolloff = 20
 -- define zsh
-local zsh_options = {
-  shell = vim.fn.executable("zsh") == 1 and "zsh" or vim.o.shell, -- 检查 Zsh 是否可用，如果可用则使用，否则保持默认
-  shellcmdflag = "-c", -- 设置命令行标志
-  shellredir = "2>&1 | tee %s", -- 重定向输出到文件
-  shellpipe = "2>&1 | tee %s", -- 管道输出到文件
-  shellquote = "", -- 不设置引号
-  shellxquote = "", -- 不设置扩展引号
-}
-
--- 将 Zsh 配置应用到 Neovim
-for option, value in pairs(zsh_options) do
-  vim.opt[option] = value
-end
+-- local zsh_options = {
+--   shell = vim.fn.executable("zsh") == 1 and "zsh" or vim.o.shell, -- 检查 Zsh 是否可用，如果可用则使用，否则保持默认
+--   shellcmdflag = "-c", -- 设置命令行标志
+--   shellredir = "2>&1 | tee %s", -- 重定向输出到文件
+--   shellpipe = "2>&1 | tee %s", -- 管道输出到文件
+--   shellquote = "", -- 不设置引号
+--   shellxquote = "", -- 不设置扩展引号
+-- }
+--
+-- -- 将 Zsh 配置应用到 Neovim
+-- for option, value in pairs(zsh_options) do
+--   vim.opt[option] = value
+-- end
 
 -- 设置折叠方法为 Treesitter
 vim.opt.foldmethod = "expr"
@@ -48,3 +48,6 @@ vim.opt.foldlevel = 5 -- 默认展开所有折叠
 -- sessionoptions 添加localoptions 来记录拼写检查状态
 vim.opt.sessionoptions =
   { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds", "localoptions" }
+
+-- Set to "basedpyright" to use basedpyright instead of pyright.
+vim.g.lazyvim_python_lsp = "basedpyright"
