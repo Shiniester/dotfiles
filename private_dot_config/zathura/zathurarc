@@ -1,0 +1,12 @@
+set selection-clipboard clipboard # 允许复制到剪切板
+# set scroll-step 120 # 滚动步长
+set adjust-open "width" # 按照宽度调整
+
+# 深色模式颜色(catppucin mocha)
+set recolor true
+set recolor-lightcolor "#1e1e2e" # 字体
+set recolor-darkcolor "#cdd6f4" # 背景
+
+set smooth-scroll true
+map j feedkeys "<C-Down>"
+map k feedkeys "<C-Up>"
