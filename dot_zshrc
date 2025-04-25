@@ -132,8 +132,11 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-# ros
+# clash proxy
+export http_proxy="http://127.0.0.1:7897"
+export https_proxy="http://127.0.0.1:7897"
 
+# ros
 ros_noetic() {
     export ROS_VERSION=1
     export ROS_PYTHON_VERSION=2
@@ -164,12 +167,19 @@ wd() {
        espeak-ng "$*"
 }
 
+# thefuck
+eval $(thefuck --alias)
+
 # CUDA
 export PATH=/opt/cuda/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/opt/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 # conda
-export PATH="/opt/miniconda3/bin:$PATH"
+# export PATH="/opt/miniconda3/bin:$PATH"  # commented out by conda initialize
+export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
+
+# canon
+export PATH=$PATH:~/.local/bin
 
 # Aliases
 alias lse='eza --icons=auto'
@@ -185,3 +195,22 @@ alias gitg= 'git log --graph --all --oneline'
 
 alias dn='~/Notes/Extras/Templates/dailynote.sh'
 alias tocs='~/Notes/Extras/Templates/TOCs.sh'
+alias ubuntu20='distrobox enter ubuntu-2004'
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+function conda_init(){ 
+__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup 
+}
+# <<< conda initialize <<<
+
