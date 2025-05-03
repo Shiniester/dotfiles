@@ -46,7 +46,7 @@ prepend_keymap = [
   ], run = "cd ~/Documents", desc = "Go to the Documents directory" },
   { on = [
     "g",
-    "Z",
+    "z",
   ], run = "cd ~/Downloads/Zip", desc = "Go to the Zip directory" },
   { on = [
     "g",
@@ -54,28 +54,38 @@ prepend_keymap = [
   ], run = "cd ~/Notes", desc = "Go to the Notes directory" },
   { on = [
     "g",
+    "o",
+  ], run = "cd ~/OpenSource", desc = "Go to the OpenSource directory" },
+  { on = [
+    "g",
     "O",
   ], run = "cd ~/Downloads/Doc", desc = "Go to the Office directory" },
   { on = [
     "g",
-    "z",
+    "Z",
   ], run = "cd ~/Desktop", desc = "Go to the Desktop directory" },
   { on = [
     "g",
-    "m",
+    "M",
   ], run = "cd ~/Music", desc = "Go to the Music directory" },
   { on = [
     "g",
     "p",
-  ], run = "cd ~/Pictures", desc = "Go to the pictures directory" },
-  { on = [
-    "g",
-    "v",
-  ], run = "cd ~/Videos", desc = "Go to the Videos directory" },
+  ], run = "cd ~/Projects/", desc = "Go to the Projects directory" },
   { on = [
     "g",
     "P",
-  ], run = "cd ~/Projects/", desc = "Go to the Projects directory" },
+  ], run = "cd ~/Pictures", desc = "Go to the pictures directory" },
+  { on = [
+    "g",
+    "V",
+  ], run = "cd ~/Videos", desc = "Go to the Videos directory" },
+
+  # plugins
   { on = "T", run = "plugin toggle-pane max-preview", desc = "Maximize or restore the preview pane" },
   { on = "F", run = "plugin smart-filter", desc = "Smart filter" },
+  { on = [
+    "g",
+    "s",
+  ], run = "plugin vcs-files", desc = "Show Git file changes" },
 ]

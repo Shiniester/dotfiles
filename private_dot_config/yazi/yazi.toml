@@ -1,3 +1,16 @@
 [manager]
 ratio = [1, 2, 2]
 sort_by = "extension"
+
+[opener]
+extract = [
+  { run = 'unzip -O gb18030 "$@"', desc = "Extract with encoding", for = "unix" },
+  { run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
+  { run = 'ya pub extract --list %*', desc = "Extract here", for = "windows" },
+]
+
+[plugin]
+prepend_fetchers = [
+  { id = "git", name = "*", run = "git" },
+  { id = "git", name = "*/", run = "git" },
+]

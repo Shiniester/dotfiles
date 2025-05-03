@@ -8,5 +8,20 @@ use = "yazi-rs/plugins:smart-filter"
 rev = "cb6165b"
 hash = "f0c4b41b5d19a3144958383333eff6e7"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:vcs-files"
+rev = "864a021"
+hash = "36405f8781fcaf33ceab24dffd5cea19"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "864a021"
+hash = "e0ada736ea676c2bbb3ec705a49526ef"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "864a021"
+hash = "1f3dad061209081a6b04dd6ff2cb06c7"
+
 [flavor]
 deps = []
