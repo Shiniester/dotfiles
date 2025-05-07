@@ -1,0 +1,91 @@
+[manager]
+prepend_keymap = [
+  { on = "q", run = "close", desc = "Close the current tab, or quit if it is last tab" },
+  { on = "<C-c>", run = "quit", desc = "Exit the process" },
+  { on = "H", run = "tab_switch -1 --relative", desc = "Switch to the previous tab" },
+  { on = "L", run = "tab_switch 1 --relative", desc = "Switch to the next tab" },
+  { on = "[", run = "back", desc = "Go back to the previous directory" },
+  { on = "]", run = "forward", desc = "Go forward to the next directory" },
+
+  # Goto
+  { on = [
+    "g",
+    "c",
+  ], run = "cd ~/.config", desc = "Go to the config directory" },
+  { on = [
+    "g",
+    "C",
+  ], run = "cd ~/.cache", desc = "Go to the cache directory" },
+  { on = [
+    "g",
+    "<Space>",
+  ], run = "cd --interactive", desc = "Go to a directory interactively" },
+  { on = [
+    "g",
+    "h",
+  ], run = "cd ~", desc = "Go to the home directory" },
+  { on = [
+    "g",
+    "l",
+  ], run = "cd ~/.local", desc = "Go to the local directory" },
+  { on = [
+    "g",
+    "t",
+  ], run = "cd ~/.local/share/Trash/files", desc = "Go to the trash directory" },
+  { on = [
+    "g",
+    "T",
+  ], run = "cd ~/.local/share/nvim/mini.files/trash ", desc = "Go to the nvim trash directory" },
+  { on = [
+    "g",
+    "d",
+  ], run = "cd ~/Downloads", desc = "Go to the Downloads directory" },
+  { on = [
+    "g",
+    "D",
+  ], run = "cd ~/Documents", desc = "Go to the Documents directory" },
+  { on = [
+    "g",
+    "z",
+  ], run = "cd ~/Downloads/Zip", desc = "Go to the Zip directory" },
+  { on = [
+    "g",
+    "n",
+  ], run = "cd ~/Notes", desc = "Go to the Notes directory" },
+  { on = [
+    "g",
+    "o",
+  ], run = "cd ~/OpenSource", desc = "Go to the OpenSource directory" },
+  { on = [
+    "g",
+    "O",
+  ], run = "cd ~/Downloads/Doc", desc = "Go to the Office directory" },
+  { on = [
+    "g",
+    "Z",
+  ], run = "cd ~/Desktop", desc = "Go to the Desktop directory" },
+  { on = [
+    "g",
+    "M",
+  ], run = "cd ~/Music", desc = "Go to the Music directory" },
+  { on = [
+    "g",
+    "p",
+  ], run = "cd ~/Projects/", desc = "Go to the Projects directory" },
+  { on = [
+    "g",
+    "P",
+  ], run = "cd ~/Pictures", desc = "Go to the pictures directory" },
+  { on = [
+    "g",
+    "V",
+  ], run = "cd ~/Videos", desc = "Go to the Videos directory" },
+
+  # plugins
+  { on = "T", run = "plugin toggle-pane max-preview", desc = "Maximize or restore the preview pane" },
+  { on = "F", run = "plugin smart-filter", desc = "Smart filter" },
+  { on = [
+    "g",
+    "s",
+  ], run = "plugin vcs-files", desc = "Show Git file changes" },
+]

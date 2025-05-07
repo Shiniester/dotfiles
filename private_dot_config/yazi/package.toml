@@ -23,5 +23,15 @@ use = "yazi-rs/plugins:full-border"
 rev = "864a021"
 hash = "1f3dad061209081a6b04dd6ff2cb06c7"
 
+[[plugin.deps]]
+use = "ahkohd/eza-preview"
+rev = "6575a9a"
+hash = "72355a6c8b7c8de6ed4dda0f98f86fee"
+
+[[plugin.deps]]
+use = "DreamMaoMao/searchjump"
+rev = "de54414"
+hash = "23e063e40a8dcded2a37c5433a627846"
+
 [flavor]
 deps = []
