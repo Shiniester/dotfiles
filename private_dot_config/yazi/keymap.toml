@@ -75,7 +75,7 @@ run = "cd ~/Documents"
 desc = "Go to the Documents directory"
 
 [[manager.prepend_keymap]]
-on = ["g", "z"]
+on = ["g", "Z"]
 run = "cd ~/Downloads/Zip"
 desc = "Go to the Zip directory"
 
@@ -95,7 +95,7 @@ run = "cd ~/Downloads/Doc"
 desc = "Go to the Office directory"
 
 [[manager.prepend_keymap]]
-on = ["g", "Z"]
+on = ["g", "z"]
 run = "cd ~/Desktop"
 desc = "Go to the Desktop directory"
 
