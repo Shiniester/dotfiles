@@ -143,12 +143,6 @@ ros_noetic() {
     export ROS_DISTRO=noetic
     source /opt/ros/noetic/setup.zsh
 }
-ros_kinetic() {
-    export ROS_VERSION=1
-    export ROS_PYTHON_VERSION=2
-    export ROS_DISTRO=kinetic
-    source /opt/ros/kinetic/setup.zsh
-}
 ros2_humble(){
     export ROS_DOMAIN_ID=42
     export ROS_VERSION=2
@@ -159,12 +153,6 @@ ros2_humble(){
     # 确保 ros2 和 colcon 的自动补全功能可用
     eval "$(register-python-argcomplete3 ros2)"
     eval "$(register-python-argcomplete3 colcon)"
-}
-
-# wudao-dict
-wd() {
-       /usr/bin/wd $*
-       espeak-ng "$*"
 }
 
 # thefuck
@@ -182,13 +170,15 @@ export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
 export PATH=$PATH:~/.local/bin
 
 # Aliases
+alias ls='ls --color=auto'
 alias lse='eza --icons=auto'
 alias lst='eza -T --icons=auto'
+alias grep='grep --color=auto'
 alias c='clear'
 alias v='nvim'
 alias q='exit'
 alias df='duf'
-alias update='sudo pacman -Syu'
+alias update='paru -Syu'
 alias copy='wl-copy'
 
 alias gitg= 'git log --graph --all --oneline'
@@ -196,6 +186,8 @@ alias gitg= 'git log --graph --all --oneline'
 alias dn='~/Notes/Extras/Templates/dailynote.sh'
 alias tocs='~/Notes/Extras/Templates/TOCs.sh'
 alias ubuntu20='distrobox enter ubuntu-2004'
+alias ubuntu22='distrobox enter ubuntu-2204'
+alias docker='podman'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

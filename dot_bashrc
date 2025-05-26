@@ -7,4 +7,57 @@
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias c='clear'
+alias q='exit'
+alias v='nvim'
 PS1='[\u@\h \W]\$ '
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/dong/.conan/data/osqp/0.6.3/_/_/package/2af715f34a7c8c2aeae57b25be0a52c4110dc502/lib
+export LIBRARY_PATH=$LIBRARY_PATH:/home/dong/.conan/data/osqp/0.6.3/_/_/package/2af715f34a7c8c2aeae57b25be0a52c4110dc502/lib
+
+# starship
+eval "$(starship init bash)"
+
+# ros noetic
+ros_noetic() {
+  export ROS_VERSION=1
+  export ROS_PYTHON_VERSION=2
+  export ROS_DISTRO=noetic
+  source /opt/ros/noetic/setup.bash
+}
+ros2_humble() {
+  export QT_QPA_PLATFORM=xcb # 使用X11来避免Qt在wayland下的兼容性问题
+  export ROS_DOMAIN_ID=1
+  export ROS_VERSION=2
+  export ROS_PYTHON_VERSION=3
+  export ROS_DISTRO=humble
+  source /opt/ros/humble/setup.bash
+  eval "$(register-python-argcomplete3 ros2)"   # ros2自动补全
+  eval "$(register-python-argcomplete3 colcon)" # colcon自动补全
+  echo "ROS 2 Humble environment has activated (Domain ID: $ROS_DOMAIN_ID)"
+}
+
+# nvim
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+source /etc/turtlebot4_discovery/setup.bash
+source /usr/share/gazebo/setup.sh
+export ROS_DOMAIN_ID=30 #TURTLEBOT3
+source /usr/share/gazebo/setup.sh
+export ROS_DOMAIN_ID=30 #TURTLEBOT3
+source /usr/share/gazebo/setup.sh
+export TURTLEBOT3_MODEL=burger
