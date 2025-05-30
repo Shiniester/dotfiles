@@ -41,6 +41,7 @@ return {
       list = { selection = { preselect = true, auto_insert = false } },
       menu = {
         border = "rounded",
+        -- winblend = 5, -- transparency
         max_height = 15,
         draw = {
           columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "kind" } },

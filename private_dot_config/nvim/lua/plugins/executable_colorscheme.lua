@@ -26,6 +26,10 @@ return {
       transparent_background = true,
       custom_highlights = function()
         return {
+          BlinkCmpMenu = { link = "NormalFloat" }, -- blink.cmp menu链接到背景色
+          BlinkCmpMenuBorder = { link = "NormalFloat" },
+          -- BlinkCmpDoc = { bg = colors.base }, --blink.cmp doc默认链接到背景色
+          -- BlinkCmpDocBorder = { bg = colors.base },
           RainbowRed = { fg = "#E06C75" },
           RainbowYellow = { fg = "#E5C07B" },
           RainbowBlue = { fg = "#61AFEF" },
@@ -33,6 +37,8 @@ return {
           RainbowGreen = { fg = "#98C379" },
           RainbowViolet = { fg = "#C678DD" },
           RainbowCyan = { fg = "#56B6C2" },
+          -- LineNr = { fg = colors.surface2 }, -- line numbers color
+          -- CursorLineNr = { fg = colors.lavender }, -- current line number color
         }
       end,
     },

@@ -7,9 +7,15 @@ return {
     latex = { enabled = false },
     checkbox = { enabled = true },
     win_options = {
-      conceallevel = { rendered = 2 },
+      conceallevel = { rendered = 2 }, -- 0:not concealed, 1:conceal, 2:conceal with conceal characters
       -- 要在光标进入行时停止显示链接,但是该插件无法实现移除链接文本，只能隐藏
       -- concealcursor = { rendered = "nvic" },
+    },
+    html = {
+      comment = {
+        -- Set to false to disable HTML comment concealing
+        conceal = false,
+      },
     },
     anti_conceal = {
       enabled = true,
