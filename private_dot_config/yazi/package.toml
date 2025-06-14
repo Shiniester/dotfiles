@@ -53,6 +53,11 @@ use = "imsi32/yatline-catppuccin"
 rev = "8cc4773"
 hash = "fd03fb015a28040bca0c0f9a8fe6fd8d"
 
+[[plugin.deps]]
+use = "ndtoan96/ouch"
+rev = "1ee69a5"
+hash = "63679f3daf8551ff8755be38b5ced0f"
+
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
 rev = "d04a298"
