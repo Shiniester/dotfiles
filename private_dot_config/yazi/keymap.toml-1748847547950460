@@ -1,226 +1,226 @@
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = "q"
 run = "close"
 desc = "Close the current tab, or quit if it is last tab"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = "<C-c>"
 run = "quit"
 desc = "Exit the process"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = "H"
 run = "tab_switch -1 --relative"
 desc = "Switch to the previous tab"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = "L"
 run = "tab_switch 1 --relative"
 desc = "Switch to the next tab"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = "["
 run = "back"
 desc = "Go back to the previous directory"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = "]"
 run = "forward"
 desc = "Go forward to the next directory"
 
 # goto
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "c"]
 run = "cd ~/.config"
 desc = "Go to the config directory"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "C"]
 run = "cd ~/.cache"
 desc = "Go to the cache directory"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "<Space>"]
 run = "cd --interactive"
 desc = "Go to a directory interactively"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "h"]
 run = "cd ~"
 desc = "Go to the home directory"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "l"]
 run = "cd ~/.local"
 desc = "Go to the local directory"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "t"]
 run = "cd ~/.local/share/Trash/files"
 desc = "Go to the trash directory"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "T"]
 run = "cd ~/.local/share/nvim/mini.files/trash"
 desc = "Go to the nvim trash directory"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "d"]
 run = "cd ~/Downloads"
 desc = "Go to the Downloads directory"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "D"]
 run = "cd ~/Documents"
 desc = "Go to the Documents directory"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "Z"]
 run = "cd ~/Downloads/Zip"
 desc = "Go to the Zip directory"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "n"]
 run = "cd ~/Notes"
 desc = "Go to the Notes directory"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "o"]
 run = "cd ~/OpenSource"
 desc = "Go to the OpenSource directory"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "O"]
 run = "cd ~/Downloads/Doc"
 desc = "Go to the Office directory"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "z"]
 run = "cd ~/Desktop"
 desc = "Go to the Desktop directory"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "M"]
 run = "cd ~/Music"
 desc = "Go to the Music directory"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "p"]
 run = "cd ~/Projects/"
 desc = "Go to the Projects directory"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "P"]
 run = "cd ~/Pictures"
 desc = "Go to the pictures directory"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "V"]
 run = "cd ~/Videos"
 desc = "Go to the Videos directory"
 
 # plugins
 # toggle-pane
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = "T"
 run = "plugin toggle-pane max-preview"
 desc = "Maximize or restore the preview pane"
 
 # smart-filter
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = "F"
 run = "plugin smart-filter"
 desc = "Smart filter"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["g", "s"]
 run = "plugin vcs-files"
 desc = "Show Git file changes"
 
 # eza-preview
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = "E"
 run = "plugin eza-preview"
 desc = "Toggle tree/list dir preview"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = "-"
 run = "plugin eza-preview --args='--inc-level'"
 desc = "Increment tree level"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = "_"
 run = "plugin eza-preview --args='--dec-level'"
 desc = "Decrement tree level"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = "$"
 run = "plugin eza-preview --args='--toggle-follow-symlinks'"
 desc = "Toggle tree follow symlinks"
 
 # searchjump
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["s"]
 run = "plugin searchjump -- autocd"
 desc = "searchjump mode"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["S"]
 run = "plugin searchjump"
 desc = "searchjump mode"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = "i"
 run = "search --via=fd"
 desc = "Search files by name via fd"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = "I"
 run = "search --via=rg"
 desc = "Search files by content via ripgrep"
 
 # relative-motions
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["1"]
 run = "plugin relative-motions 1"
 desc = "Move in relative steps"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["2"]
 run = "plugin relative-motions 2"
 desc = "Move in relative steps"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["3"]
 run = "plugin relative-motions 3"
 desc = "Move in relative steps"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["4"]
 run = "plugin relative-motions 4"
 desc = "Move in relative steps"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["5"]
 run = "plugin relative-motions 5"
 desc = "Move in relative steps"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["6"]
 run = "plugin relative-motions 6"
 desc = "Move in relative steps"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["7"]
 run = "plugin relative-motions 7"
 desc = "Move in relative steps"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["8"]
 run = "plugin relative-motions 8"
 desc = "Move in relative steps"
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on = ["9"]
 run = "plugin relative-motions 9"
 desc = "Move in relative steps"
