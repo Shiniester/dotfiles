@@ -1,40 +1,41 @@
+local function is_leetcode_active()
+  local ft = vim.bo.filetype
+  local bufname = vim.api.nvim_buf_get_name(0)
+
+  return ft:match("^leetcode") or bufname:match("leetcode") or vim.g.leetcode_session_active == true
+end
+
 return {
-  "CopilotC-Nvim/CopilotChat.nvim",
-  opts = {
-    prompts = {
-      Explain = {
-        prompt = "Write an explanation for the selected code as paragraphs of text in Chinese.",
-        system_prompt = "COPILOT_EXPLAIN",
-      },
-      Review = {
-        prompt = "Review the selected code in Chinese.",
-        system_prompt = "COPILOT_REVIEW",
-      },
-      Fix = {
-        prompt = "There is a problem in this code. Identify the issues and rewrite the code with fixes. Explain what was wrong and how your changes address the problems in Chinese.",
-      },
-      Optimize = {
-        prompt = "Optimize the selected code to improve performance and readability. Explain your optimization strategy and the benefits of your changes in Chinese.",
-      },
-      Docs = {
-        prompt = "Please add documentation comments to the selected code in Chinese.",
-      },
-      Tests = {
-        prompt = "Please generate tests for my code.",
-      },
-      Commit = {
-        prompt = "Write commit message for the change with commitizen convention. Keep the title under 50 characters and wrap message at 72 characters. Format as a gitcommit code block.",
-        context = "git:staged",
-      },
-    },
+  -- 基础的 copilot.lua 插件配置
+  {
+    "zbirenbaum/copilot.lua",
+    enabled = function()
+      return not is_leetcode_active()
+    end,
   },
-  keys = {
-    { "<leader>ae", "<cmd>CopilotChatExplain<cr>", desc = "Explain (CopilotChat)", mode = { "n", "v" } },
-    { "<leader>ar", "<cmd>CopilotChatReview<cr>", desc = "Review (CopilotChat)", mode = { "n", "v" } },
-    { "<leader>af", "<cmd>CopilotChatFix<cr>", desc = "Fix (CopilotChat)", mode = { "n", "v" } },
-    { "<leader>ao", "<cmd>CopilotChatOptimise<cr>", desc = "Optimise (CopilotChat)", mode = { "n", "v" } },
-    { "<leader>ad", "<cmd>CopilotChatDocs<cr>", desc = "Docs (CopilotChat)", mode = { "n", "v" } },
-    { "<leader>at", "<cmd>CopilotChatTests<cr>", desc = "Tests (CopilotChat)", mode = { "n", "v" } },
-    { "<leader>ac", "<cmd>CopilotChatCommit<cr>", desc = "Tests (CopilotChat)", mode = { "n", "v" } },
+
+  {
+    "giuxtaposition/blink-cmp-copilot",
+    enabled = function()
+      return not is_leetcode_active()
+    end,
+  },
+
+  -- 为 blink.cmp 提供配置
+  {
+    "saghen/blink.cmp",
+    opts = function(_, opts)
+      -- 检查是否为 LeetCode 环境
+      if is_leetcode_active() then
+        -- 在 LeetCode 环境中不使用 copilot 源
+        opts.sources = opts.sources or {}
+        opts.sources.default = opts.sources.default or {}
+        -- 从默认源中移除 copilot
+        opts.sources.default = vim.tbl_filter(function(source)
+          return source ~= "copilot"
+        end, opts.sources.default)
+      end
+      return opts
+    end,
   },
 }
