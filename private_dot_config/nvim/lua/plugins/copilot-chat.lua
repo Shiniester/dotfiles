@@ -26,6 +26,11 @@ return {
         prompt = "Write commit message for the change with commitizen convention. Keep the title under 50 characters and wrap message at 72 characters. Format as a gitcommit code block.",
         context = "git:staged",
       },
+      Markdown = {
+        prompt = " 请将选中的文字转换为markdown格式排版，具体要求如下：1. 开始排版时以第二级标题（`##`）开头 2.在第二级标题之后的内容需按照以下规则进行排版：如果有列表项，用无序列表（`-`）或有序列表（`1.`）进行格式化;内容中的引言用引用块（`>`）表示  长段落适当拆分为短段落，以便阅读; 任何代码片段需使用代码块（`````）进行标记; 对图片或链接使用正确的markdown语法（如`![alt text](image_url)`或`[link text](url)`); 3. 保持文字的层次结构和语义清晰，确保格式化后的内容适合阅读和分享; ",
+        mapping = "<leader>am",
+        description = "Markdown Rewrite",
+      },
     },
   },
   keys = {
