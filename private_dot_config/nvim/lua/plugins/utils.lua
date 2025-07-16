@@ -1,3 +1,31 @@
+local excluded_filetypes = {
+  -- 这些文件类型的buffer不会被自动保存
+  -- this one is especially useful if you use neovim as a commit message editor
+  "gitcommit",
+  -- most of these are usually set to non-modifiable, which prevents autosaving
+  -- by default, but it doesn't hurt to be extra safe.
+  "NvimTree",
+  "Outline",
+  "dashboard",
+  "lazygit",
+  "prompt",
+}
+
+local excluded_filenames = {
+  -- 这些文件名的buffer不会被自动保存
+  "do-not-autosave-me.lua",
+}
+
+local function save_condition(buf)
+  if
+    vim.tbl_contains(excluded_filetypes, vim.fn.getbufvar(buf, "&filetype"))
+    or vim.tbl_contains(excluded_filenames, vim.fn.expand("%:t"))
+  then
+    return false
+  end
+  return true
+end
+
 return {
   -- 自动高亮光标下的单词
   {
@@ -84,7 +112,14 @@ return {
     event = "LazyFile",
     -- event = { "InsertLeave", "TextChanged" }, -- optional for lazy loading on trigger events
     opts = {
-      -- noautocmd = true, -- 解决format冲突
+      trigger_events = { -- See :h events
+        immediate_save = { "FocusLost", "QuitPre", "VimSuspend" }, -- vim events that trigger an immediate save,删除了"BufLeave"
+        defer_save = { "InsertLeave" }, -- vim events that trigger a deferred save (saves after `debounce_delay`),删除了"TextChanged"
+        cancel_deferred_save = { "InsertEnter" }, -- vim events that cancel a pending deferred save
+      },
+      condition = save_condition,
+      noautocmd = true, -- 解决format冲突
+      debounce_delay = 2000, -- 等待保存时间增加到 2000ms (2秒)
     },
   },
   -- 纠正使用nvim的坏习惯

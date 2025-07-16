@@ -67,11 +67,8 @@ return {
         ["<C-k>"] = { "select_prev", "fallback" },
       },
       completion = {
-        menu = {
-          auto_show = true, -- 菜单自动显示
-          menu = { auto_show = false }, -- 保持默认行为
-          ghost_text = { enabled = true }, -- 为 noice.nvim 启用
-        },
+        menu = { auto_show = true }, -- 菜单自动显示
+        ghost_text = { enabled = true }, -- 为 noice.nvim 启用
       },
       sources = function()
         local type = vim.fn.getcmdtype()
@@ -89,6 +86,7 @@ return {
 
     keymap = {
       preset = "default",
+      ["<CR>"] = { "accept", "fallback" },
       ["<C-k>"] = { "select_prev", "fallback" },
       ["<C-j>"] = { "select_next", "fallback" },
     },

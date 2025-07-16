@@ -15,7 +15,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     opts = {
-      cursor_line_only = false, -- 仅在光标所在行显示提示
+      cursor_line_only = true, -- 仅在光标所在行显示提示
       max_length = 60, -- 提示最大长度
       min_distance = 5, -- 显示提示的最小距离
       prefix_string = " 📎 ", -- 提示前缀字符串

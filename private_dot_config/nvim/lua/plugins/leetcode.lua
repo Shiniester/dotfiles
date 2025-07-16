@@ -1,6 +1,7 @@
 local leet_arg = "leetcode.nvim"
 
 -- Import the folding function from your autocmd.lua
+-- 在leetcode.nvim中折叠`import`部分的代码
 local function create_fold_for_imports()
   local bufnr = vim.api.nvim_get_current_buf()
 

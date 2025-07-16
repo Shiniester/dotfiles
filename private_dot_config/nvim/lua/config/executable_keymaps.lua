@@ -84,3 +84,15 @@ end, { desc = "Spelling add word to list" })
 vim.keymap.set("n", "<leader>xA", function()
   vim.cmd("normal! zug") -- 移除标记的单词
 end, { desc = "Spelling remove word from list" })
+
+-- 手动创造折叠
+vim.keymap.set("v", "zf", function()
+  -- 保存当前的折叠方法
+  local original_foldmethod = vim.opt.foldmethod:get()
+  -- 切换到手动模式
+  vim.opt.foldmethod = "manual"
+  -- 创建折叠
+  vim.cmd("normal! zf")
+  -- 可选：如果需要，可以在这里恢复原来的折叠方法
+  vim.opt.foldmethod = original_foldmethod
+end, { desc = "Create fold (temporary manual mode)" })
