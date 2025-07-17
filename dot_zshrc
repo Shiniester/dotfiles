@@ -180,14 +180,13 @@ alias q='exit'
 alias df='duf'
 alias update='paru -Syu'
 alias copy='wl-copy'
-
 alias gitg= 'git log --graph --all --oneline'
+alias lg='lazygit'
 
-alias dn='~/Notes/Extras/Templates/dailynote.sh'
+# alias dn='~/Notes/Extras/Templates/dailynote.sh'
 alias tocs='~/Notes/Extras/Templates/TOCs.sh'
 alias ubuntu20='distrobox enter ubuntu-2004'
 alias ubuntu22='distrobox enter ubuntu-2204'
-alias docker='podman'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -205,4 +204,3 @@ fi
 unset __conda_setup 
 }
 # <<< conda initialize <<<
-

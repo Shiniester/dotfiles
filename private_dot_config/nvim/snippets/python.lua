@@ -11,6 +11,35 @@ local rep = require("luasnip.extras").rep
 local fmt = require("luasnip.extras.fmt").fmt
 
 return {
+  -- Python comments
+
+  s({ trig = "cml", name = "Long comment", dscr = "Insert a multi-line comment block" }, {
+    t({ '"""', "" }),
+    i(0),
+    t({ "", '"""' }),
+  }),
+
+  s({ trig = "cmld", name = "Docstring", dscr = "Insert a docstring comment" }, {
+    t({ '"""', "" }),
+    i(1, "Description"),
+    t({ "", "", "Args:" }),
+    t({ "", "    " }),
+    i(2, "param_name"),
+    t(": "),
+    i(3, "param_description"),
+    t({ "", "", "Returns:", "    " }),
+    i(4, "return_description"),
+    t({ "", '"""' }),
+    i(0),
+  }),
+
+  -- 边框和分隔符 (Python style)
+  s({ trig = "box", name = "Comment box", dscr = "Create a Python-style comment box" }, {
+    t({ "##############################################################################", "# " }),
+    i(0),
+    t({ "", "##############################################################################" }),
+  }),
+
   -- Context managers
   s(
     { trig = "withopen", name = "With open file", dscr = "File open context manager" },
