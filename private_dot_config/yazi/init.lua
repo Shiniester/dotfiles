@@ -12,14 +12,6 @@ require("full-border"):setup({
 	type = ui.Border.ROUNDED,
 })
 
-require("eza-preview"):setup({
-	-- Determines the directory depth level to tree preview (default: 3)
-	level = 2,
-
-	-- Whether to follow symlinks when previewing directories (default: false)
-	follow_symlinks = false,
-})
-
 require("searchjump"):setup({
 	unmatch_fg = "#b2a496",
 	match_str_fg = "#000000",

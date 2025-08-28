@@ -2,18 +2,27 @@
 ratio = [1, 2, 2]
 sort_by = "extension"
 
-# [opener]
-# extract = [
-#   { run = 'unzip -O gb18030 "$@"', desc = "Extract with encoding", for = "unix" },
-#   { run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
-#   { run = 'ya pub extract --list %*', desc = "Extract here", for = "windows" },
-# ]
+[opener]
+edit = [
+  { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+  { run = 'tw "$@"', desc = "tabiew", block = true, for = "unix" },
+  { run = 'code %*', orphan = true, desc = "code", for = "windows" },
+  { run = 'code -w %*', block = true, desc = "code (block)", for = "windows" },
+]
+open = [
+  { run = 'xdg-open "$1"', desc = "Open", for = "linux" },
+  { run = 'doxx "$@"', desc = "doxx", block = true, for = "unix" },
+  { run = 'open "$@"', desc = "Open", for = "macos" },
+  { run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
+  { run = 'termux-open "$1"', desc = "Open", for = "android" },
+]
+extract = [
+  { run = 'unzip -O gb18030 "$@"', desc = "Extract with encoding", for = "unix" },
+  { run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
+  { run = 'ya pub extract --list %*', desc = "Extract here", for = "windows" },
+]
 
-[[opener.extract]]
-run = 'unzip -O gb18030 "$@"'
-desc = "Extract with encoding"
-for = "unix"
-
+# git
 [[plugin.prepend_fetchers]]
 id = "git"
 name = "*"
@@ -24,38 +33,41 @@ id = "git"
 name = "*/"
 run = "git"
 
+# eza
 [[plugin.prepend_previewers]]
 name = "*/"
-run = "eza-preview"
+run = 'piper -- eza -TL=3 --color=always --icons=always --group-directories-first --no-quotes "$1"'
 
+# markdown
 [[plugin.prepend_previewers]]
 name = "*.md"
-run = "glow"
+run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"'
 
+# zip
 [[plugin.prepend_previewers]]
 mime = "application/*zip"
-run = "ouch"
+run = 'piper -- ouch list --tree "$1"'
 
 [[plugin.prepend_previewers]]
 mime = "application/x-tar"
-run = "ouch"
+run = 'piper -- ouch list --tree "$1"'
 
 [[plugin.prepend_previewers]]
 mime = "application/x-bzip2"
-run = "ouch"
+run = 'piper -- ouch list --tree "$1"'
 
 [[plugin.prepend_previewers]]
 mime = "application/x-7z-compressed"
-run = "ouch"
+run = 'piper -- ouch list --tree "$1"'
 
 [[plugin.prepend_previewers]]
 mime = "application/x-rar"
-run = "ouch"
+run = 'piper -- ouch list --tree "$1"'
 
 [[plugin.prepend_previewers]]
 mime = "application/x-xz"
-run = "ouch"
+run = 'piper -- ouch list --tree "$1"'
 
 [[plugin.prepend_previewers]]
 mime = "application/xz"
-run = "ouch"
+run = 'piper -- ouch list --tree "$1"'
