@@ -1,5 +1,5 @@
--- Source: https://github.com/dexeonify/mpv-config/blob/main/scripts/seek-to.lua
--- with modifications
+-- Original script from https://github.com/occivink/mpv-scripts/blob/master/scripts/seek-to.lua
+-- prerequisite: xclip (clipboard CLI interface) installed
 
 local assdraw = require 'mp.assdraw'
 local utils = require 'mp.utils'
@@ -159,7 +159,7 @@ end
 function paste_timestamp()
     -- get clipboard data
     local clipboard = utils.subprocess({
-        args = { "powershell", "-Command", "Get-Clipboard", "-Raw" },
+        args = { "xclip", "-selection", "clipboard", "-o" },
         playback_only = false,
         capture_stdout = true,
         capture_stderr = true
