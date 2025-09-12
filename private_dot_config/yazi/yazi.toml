@@ -2,6 +2,10 @@
 ratio = [1, 2, 2]
 sort_by = "extension"
 
+[preview]
+max_width = 900
+max_height = 1200
+
 [opener]
 edit = [
   { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
@@ -45,29 +49,5 @@ run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"'
 
 # zip
 [[plugin.prepend_previewers]]
-mime = "application/*zip"
-run = 'piper -- ouch list --tree "$1"'
-
-[[plugin.prepend_previewers]]
-mime = "application/x-tar"
-run = 'piper -- ouch list --tree "$1"'
-
-[[plugin.prepend_previewers]]
-mime = "application/x-bzip2"
-run = 'piper -- ouch list --tree "$1"'
-
-[[plugin.prepend_previewers]]
-mime = "application/x-7z-compressed"
-run = 'piper -- ouch list --tree "$1"'
-
-[[plugin.prepend_previewers]]
-mime = "application/x-rar"
-run = 'piper -- ouch list --tree "$1"'
-
-[[plugin.prepend_previewers]]
-mime = "application/x-xz"
-run = 'piper -- ouch list --tree "$1"'
-
-[[plugin.prepend_previewers]]
-mime = "application/xz"
+mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}"
 run = 'piper -- ouch list --tree "$1"'

@@ -1,0 +1,5 @@
+private_dot_config/mpv/dot_git/**
+private_dot_config/mpv/shaders/private_cache/**
+
+# Shaders cache directory
+
