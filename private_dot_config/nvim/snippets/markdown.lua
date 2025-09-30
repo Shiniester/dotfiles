@@ -13,12 +13,100 @@ local rep = require("luasnip.extras").rep
 return {
   -- Callouts/Admonitions in extended markdown format
   s(
+    { trig = "abstract", name = "Abstract Admonition", dscr = "Create an abstract admonition block" },
+    { t("> [!ABSTRACT]"), t({ "", "> " }), i(1) }
+  ),
+  s(
+    { trig = "summary", name = "Summary Admonition", dscr = "Create a summary admonition block" },
+    { t("> [!SUMMARY]"), t({ "", "> " }), i(1) }
+  ),
+  s(
+    { trig = "tldr", name = "TLDR Admonition", dscr = "Create a TLDR admonition block" },
+    { t("> [!TLDR]"), t({ "", "> " }), i(1) }
+  ),
+  s(
+    { trig = "info", name = "Info Admonition", dscr = "Create an info admonition block" },
+    { t("> [!INFO]"), t({ "", "> " }), i(1) }
+  ),
+  s(
+    { trig = "todo", name = "Todo Admonition", dscr = "Create a todo admonition block" },
+    { t("> [!TODO]"), t({ "", "> " }), i(1) }
+  ),
+
+  -- Success related
+  s(
+    { trig = "hint", name = "Hint Admonition", dscr = "Create a hint admonition block" },
+    { t("> [!HINT]"), t({ "", "> " }), i(1) }
+  ),
+  s(
+    { trig = "success", name = "Success Admonition", dscr = "Create a success admonition block" },
+    { t("> [!SUCCESS]"), t({ "", "> " }), i(1) }
+  ),
+  s(
+    { trig = "check", name = "Check Admonition", dscr = "Create a check admonition block" },
+    { t("> [!CHECK]"), t({ "", "> " }), i(1) }
+  ),
+  s(
+    { trig = "done", name = "Done Admonition", dscr = "Create a done admonition block" },
+    { t("> [!DONE]"), t({ "", "> " }), i(1) }
+  ),
+
+  -- Warning related
+  s(
+    { trig = "question", name = "Question Admonition", dscr = "Create a question admonition block" },
+    { t("> [!QUESTION]"), t({ "", "> " }), i(1) }
+  ),
+  s(
+    { trig = "help", name = "Help Admonition", dscr = "Create a help admonition block" },
+    { t("> [!HELP]"), t({ "", "> " }), i(1) }
+  ),
+  s(
+    { trig = "faq", name = "FAQ Admonition", dscr = "Create a FAQ admonition block" },
+    { t("> [!FAQ]"), t({ "", "> " }), i(1) }
+  ),
+  s(
+    { trig = "attention", name = "Attention Admonition", dscr = "Create an attention admonition block" },
+    { t("> [!ATTENTION]"), t({ "", "> " }), i(1) }
+  ),
+
+  -- Error related
+  s(
     { trig = "error", name = "Error Admonition", dscr = "Create a error admonition block" },
     { t("> [!error]"), t({ "", "> " }), i(1) }
   ),
   s(
     { trig = "bug", name = "Bug Admonition", dscr = "Create a bug admonition block" },
     { t("> [!bug]"), t({ "", "> " }), i(1) }
+  ),
+  s(
+    { trig = "failure", name = "Failure Admonition", dscr = "Create a failure admonition block" },
+    { t("> [!FAILURE]"), t({ "", "> " }), i(1) }
+  ),
+  s(
+    { trig = "fail", name = "Fail Admonition", dscr = "Create a fail admonition block" },
+    { t("> [!FAIL]"), t({ "", "> " }), i(1) }
+  ),
+  s(
+    { trig = "missing", name = "Missing Admonition", dscr = "Create a missing admonition block" },
+    { t("> [!MISSING]"), t({ "", "> " }), i(1) }
+  ),
+  s(
+    { trig = "danger", name = "Danger Admonition", dscr = "Create a danger admonition block" },
+    { t("> [!DANGER]"), t({ "", "> " }), i(1) }
+  ),
+
+  -- Others
+  s(
+    { trig = "example", name = "Example Admonition", dscr = "Create an example admonition block" },
+    { t("> [!EXAMPLE]"), t({ "", "> " }), i(1) }
+  ),
+  s(
+    { trig = "quote", name = "Quote Admonition", dscr = "Create a quote admonition block" },
+    { t("> [!QUOTE]"), t({ "", "> " }), i(1) }
+  ),
+  s(
+    { trig = "cite", name = "Cite Admonition", dscr = "Create a cite admonition block" },
+    { t("> [!CITE]"), t({ "", "> " }), i(1) }
   ),
 
   -- Extended formatting
@@ -50,14 +138,8 @@ return {
     { t("*["), i(1, "abbreviation"), t("]("), i(2, "explanation"), t(")*") }
   ),
 
-  -- Document structuring
-  -- 目录
-  s({ trig = "toc", name = "Table of Contents", dscr = "Insert table of contents placeholder" }, { t("[TOC]") }),
-  -- 分割线
-  s(
-    { trig = "dash", name = "Horizontal Rule with Text", dscr = "Insert horizontal rule with text" },
-    { t("---"), t({ "", "" }), i(1, "text"), t({ "", "---" }) }
-  ),
+  -- toc
+  s({ trig = "toc", name = "Table of Contents", dscr = "Insert table of contents placeholder" }, { t("<!-- toc -->") }),
 
   -- Complex elements
   -- HTML扩展: 内容折叠与展开

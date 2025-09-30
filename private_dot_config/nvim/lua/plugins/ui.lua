@@ -20,7 +20,7 @@ return {
     },
   },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
       ui = {
         border = "rounded",
@@ -32,6 +32,12 @@ return {
     "akinsho/bufferline.nvim",
     opts = {
       options = {
+        -- numbers = "ordinal", -- 'none'|'ordinal'|'buffer_id'|'both'"
+        -- separator_style = "thick", -- 'slant'|'thick'|'thin'|'padded_slant'|'padded_thin'|'none'
+        indicator = {
+          icon = "▋", -- 图标指示器▎,▍,▋,█,▕,▐
+          style = "icon", -- 同时使用图标和其他样式
+        },
         show_close_icon = false,
         show_buffer_close_icons = false,
         -- numbers = "buffer_id",

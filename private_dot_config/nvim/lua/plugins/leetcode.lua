@@ -125,7 +125,7 @@ return {
     { "<leader>Cm", "<cmd>Leet menu<cr>", desc = "Leet menu", mode = { "n", "v" } },
     { "<leader>Ct", "<cmd>Leet test<cr>", desc = "Leet test", mode = { "n", "v" } },
     { "<leader>CT", "<cmd>Leet tabs<cr>", desc = "Leet tabs", mode = { "n", "v" } },
-    { "<leader>Cl", "<cmd>Leet list<cr>", desc = "Leet list", mode = { "n", "v" } },
+    { "<leader>Cp", "<cmd>Leet list<cr>", desc = "Leet problem list", mode = { "n", "v" } },
     { "<leader>Ci", "<cmd>Leet info<cr>", desc = "Leet info", mode = { "n", "v" } },
     { "<leader>CS", "<cmd>Leet last_submit<cr>", desc = "Leet last submit", mode = { "n", "v" } },
     { "<leader>Cs", "<cmd>Leet submit<cr>", desc = "Leet submit", mode = { "n", "v" } },

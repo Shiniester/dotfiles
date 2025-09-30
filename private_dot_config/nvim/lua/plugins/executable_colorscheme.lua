@@ -24,6 +24,20 @@ return {
     opts = {
       flavour = "mocha",
       transparent_background = true,
+      float = {
+        transparent = true, -- enable transparent floating windows
+        solid = false, -- use solid styling for floating windows, see |winborder|
+      },
+      integrations = {
+        blink_cmp = {
+          style = "bordered",
+        },
+        rainbow_delimiters = true,
+        -- snacks = {
+        --   enabled = true,
+        --   indent_scope_color = "lavender", -- catppuccin color (eg. `lavender`) Default: text
+        -- },
+      },
       custom_highlights = function()
         return {
           BlinkCmpMenu = { link = "NormalFloat" }, -- blink.cmp menu链接到背景色

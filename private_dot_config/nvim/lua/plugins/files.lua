@@ -1,7 +1,7 @@
 return {
   -- mini.files的文件顺序
   {
-    "echasnovski/mini.files",
+    "nvim-mini/mini.files",
     opts = {
       content = {
         sort = function(entries)

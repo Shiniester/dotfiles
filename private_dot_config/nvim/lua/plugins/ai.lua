@@ -1,46 +1,50 @@
-local function is_leetcode_active()
-  local ft = vim.bo.filetype
-  local bufname = vim.api.nvim_buf_get_name(0)
-
-  return ft:match("^leetcode") or bufname:match("leetcode") or vim.g.leetcode_session_active == true
-end
+-- local function is_leetcode_active()
+--   local ft = vim.bo.filetype
+--   local bufname = vim.api.nvim_buf_get_name(0)
+--
+--   return ft:match("^leetcode") or bufname:match("leetcode") or vim.g.leetcode_session_active == true
+-- end
 
 return {
   -- 基础的 copilot.lua 插件配置
-  {
-    "zbirenbaum/copilot.lua",
-    enabled = function()
-      return not is_leetcode_active()
-    end,
-  },
-
-  {
-    "giuxtaposition/blink-cmp-copilot",
-    enabled = function()
-      return not is_leetcode_active()
-    end,
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   enabled = function()
+  --     return not is_leetcode_active()
+  --   end,
+  --   -- opts = {
+  --   --   -- copilot_model = "gpt-4o-copilot", -- Current LSP default is gpt-35-turbo, supports gpt-4o-copilot
+  --   -- },
+  -- },
+  -- {
+  --   "fang2hou/blink-copilot",
+  --   enabled = function()
+  --     return not is_leetcode_active()
+  --   end,
+  -- },
 
   -- 为 blink.cmp 提供配置
-  {
-    "saghen/blink.cmp",
-    opts = function(_, opts)
-      -- 检查是否为 LeetCode 环境
-      if is_leetcode_active() then
-        -- 在 LeetCode 环境中不使用 copilot 源
-        opts.sources = opts.sources or {}
-        opts.sources.default = opts.sources.default or {}
-        -- 从默认源中移除 copilot
-        opts.sources.default = vim.tbl_filter(function(source)
-          return source ~= "copilot"
-        end, opts.sources.default)
-      end
-      return opts
-    end,
-  },
+  -- {
+  --   "saghen/blink.cmp",
+  --   opts = function(_, opts)
+  --     -- 检查是否为 LeetCode 环境
+  --     if is_leetcode_active() then
+  --       -- 在 LeetCode 环境中不使用 copilot 源
+  --       opts.sources = opts.sources or {}
+  --       opts.sources.default = opts.sources.default or {}
+  --       -- 从默认源中移除 copilot
+  --       opts.sources.default = vim.tbl_filter(function(source)
+  --         return source ~= "copilot"
+  --       end, opts.sources.default)
+  --     end
+  --     return opts
+  --   end,
+  -- },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     opts = {
+      -- model = "claude-3.5-sonnet",
+      model = "gpt-4o",
       prompts = {
         Explain = {
           prompt = "Write an explanation for the selected code as paragraphs of text in Chinese.",
@@ -67,7 +71,7 @@ return {
           context = "git:staged",
         },
         Markdown = {
-          prompt = " 请将选中的文字转换为markdown格式排版，具体要求如下：1. 开始排版时以第二级标题（`##`）开头 2.在第二级标题之后的内容需按照以下规则进行排版：如果有列表项，用无序列表（`-`）或有序列表（`1.`）进行格式化;内容中的引言用引用块（`>`）表示  长段落适当拆分为短段落，以便阅读; 任何代码片段需使用代码块（`````）进行标记; 对图片或链接使用正确的markdown语法（如`![alt text](image_url)`或`[link text](url)`); 3. 保持文字的层次结构和语义清晰，确保格式化后的内容适合阅读和分享; ",
+          prompt = " 请将选中的文字转换为markdown格式排版，具体要求如下：1. 开始排版时以第二级标题（`##`）开头,最多三级标题; 2.在第三级标题之后的内容需按照以下规则进行排版：如果有列表项，用无序列表（`-`）或有序列表（`1.`）进行格式化;内容中的引言用引用块（`>`）表示  长段落适当拆分为短段落，以便阅读; 任何代码片段需使用代码块（`````）进行标记; 对图片或链接使用正确的markdown语法（如`![alt text](image_url)`或`[link text](url)`); 3. 保持文字的层次结构和语义清晰，确保格式化后的内容适合阅读和分享; ",
           mapping = "<leader>am",
           description = "Markdown Rewrite",
         },

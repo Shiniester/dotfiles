@@ -13,15 +13,13 @@ return {
     },
     enabled = true,
     ft = "python",
-    branch = "regexp", -- This is the regexp branch, use this for the new version
     cmd = "VenvSelect",
     ---@type venv-selector.Config
     opts = {
       options = {
         -- on_telescope_result_callback = shorter_name,
         notify_user_on_venv_activation = true,
-        -- TODO: use snacks picker(https://github.com/linux-cultist/venv-selector.nvim/pull/208)
-        picker = "native",
+        picker = "snacks",
       },
     },
     keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv", ft = "python" } },

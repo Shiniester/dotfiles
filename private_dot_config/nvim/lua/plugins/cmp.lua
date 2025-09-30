@@ -5,15 +5,15 @@ return {
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
-    fuzzy = {
-      implementation = "prefer_rust_with_warning",
-      sorts = {
-        "exact",
-        -- defaults
-        "score",
-        "sort_text",
-      },
-    },
+    -- fuzzy = {
+    --   implementation = "prefer_rust_with_warning",
+    --   sorts = {
+    --     "exact",
+    --     -- defaults
+    --     "score",
+    --     "sort_text",
+    --   },
+    -- },
     -- signature = { enabled = true },
     completion = {
       -- NOTE: some LSPs may add auto brackets themselves anyway
@@ -21,8 +21,9 @@ return {
       list = { selection = { preselect = true, auto_insert = false } },
       menu = {
         border = "rounded",
-        -- winblend = 5, -- transparency
+        -- winblend = 0, -- transparency
         max_height = 15,
+        winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None", -- menu transparency
         draw = {
           columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "kind" } },
           components = {
@@ -61,7 +62,7 @@ return {
       enabled = true,
       keymap = {
         preset = "cmdline",
-        ["<Tab>"] = { "accept" },
+        -- ["<Tab>"] = { "accept" },
         ["<CR>"] = { "accept_and_enter", "fallback" },
         ["<C-j>"] = { "select_next", "fallback" },
         ["<C-k>"] = { "select_prev", "fallback" },

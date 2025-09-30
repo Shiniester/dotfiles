@@ -1,6 +1,15 @@
 return {
   "folke/snacks.nvim",
   opts = {
+    picker = {
+      win = {
+        input = {
+          keys = {
+            ["<C-y>"] = { "yank", mode = { "n", "i" } },
+          },
+        },
+      },
+    },
     image = {},
     lazygit = {
       win = {
@@ -105,6 +114,29 @@ return {
         char = "·",
         hl = "SnacksIndentBlank", ---@type string|string[] hl group for blank spaces
       },
+    },
+  },
+  keys = {
+    {
+      "<leader>cp",
+      function()
+        Snacks.terminal.toggle("python " .. vim.fn.expand("%"), { auto_close = false })
+      end,
+      ft = "python",
+      desc = "Run Python File",
+    },
+    {
+      "<leader>cP",
+      function()
+        Snacks.terminal.toggle("python -i " .. vim.fn.expand("%"), {
+          auto_close = false,
+          -- win = {
+          --   position = "bottom",
+          -- },
+        })
+      end,
+      ft = "python",
+      desc = "Run Python File Interactive",
     },
   },
 }

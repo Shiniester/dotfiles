@@ -33,7 +33,7 @@ return {
       -- " valid: `/path/with\ space/xxx`
       -- " invalid: `/path/with\\ space/xxx`
       -- " default: ''
-      vim.g.mkdp_browser = "firefox"
+      vim.g.mkdp_browser = "brave"
     end,
     keys = {
       {
@@ -47,12 +47,18 @@ return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     ft = "markdown",
-    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.icons" }, -- if you use standalone mini plugins
     opts = {
       -- 除了正在编辑的行，其他行保持渲染状态
       render_modes = true,
       latex = { enabled = false },
       checkbox = { enabled = true },
+      code = {
+        sign = false,
+        width = "block",
+        min_width = 80,
+        right_pad = 1,
+      },
       win_options = {
         conceallevel = { rendered = 2 }, -- 0:not concealed, 1:conceal, 2:conceal with conceal characters
         -- 要在光标进入行时停止显示链接,但是该插件无法实现移除链接文本，只能隐藏
@@ -66,19 +72,23 @@ return {
       },
       anti_conceal = {
         enabled = true,
+        -- disabled_modes = { "n" }, -- disable render in normal mode
         -- Which elements to always show, ignoring anti conceal behavior. Values can either be
         -- booleans to fix the behavior or string lists representing modes where anti conceal
         -- behavior will be ignored. Valid values are:
         --   head_icon, head_background, head_border, code_language, code_background, code_border,
         --   dash, bullet, check_icon, check_scope, quote, table_border, callout, link, sign
         ignore = {
-          -- link = true,
+          link = true,
+          bullet = true, -- render bullet in insert mode
           code_background = true,
           sign = true,
         },
         above = 0,
         below = 0,
       },
+      -- https://github.com/MeanderingProgrammer/render-markdown.nvim/issues/509
+      -- win_options = { concealcursor = { rendered = "nvc" } },
     },
   },
   {

@@ -29,7 +29,7 @@ end
 return {
   -- 自动高亮光标下的单词
   {
-    "echasnovski/mini.cursorword",
+    "nvim-mini/mini.cursorword",
     version = false,
     event = "LazyFile",
     opts = {},
@@ -114,7 +114,7 @@ return {
     opts = {
       trigger_events = { -- See :h events
         immediate_save = { "BufLeave", "FocusLost", "QuitPre", "VimSuspend" }, -- vim events that trigger an immediate save,删除了"BufLeave"
-        defer_save = { "InsertLeave" }, -- vim events that trigger a deferred save (saves after `debounce_delay`),删除了"TextChanged"
+        defer_save = { "InsertLeave", "TextChanged" }, -- vim events that trigger a deferred save (saves after `debounce_delay`),删除了"TextChanged"
         cancel_deferred_save = { "InsertEnter" }, -- vim events that cancel a pending deferred save
       },
       condition = save_condition,
@@ -128,12 +128,24 @@ return {
     lazy = false,
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = {
+      max_count = 10,
+      disable_mouse = false,
+      disabled_filetypes = {
+        ["Outline"] = true, -- Allow in filetype starting with outline
+      },
       disabled_keys = {
         ["<Up>"] = false, -- Allow <Up> key
         ["<Down>"] = false, -- Allow <Up> key
         ["<Left>"] = false, -- Allow <Up> key
         ["<Right>"] = false, -- Allow <Up> key
       },
+    },
+  },
+  {
+    "gbprod/yanky.nvim",
+    keys = {
+      { "gp", enable = false },
+      { "gP", enable = false },
     },
   },
 }
