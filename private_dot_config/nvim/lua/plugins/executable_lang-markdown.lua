@@ -33,7 +33,7 @@ return {
       -- " valid: `/path/with\ space/xxx`
       -- " invalid: `/path/with\\ space/xxx`
       -- " default: ''
-      vim.g.mkdp_browser = "brave"
+      vim.g.mkdp_browser = "firefox"
     end,
     keys = {
       {

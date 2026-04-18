@@ -19,6 +19,11 @@ return {
       options = {
         -- on_telescope_result_callback = shorter_name,
         notify_user_on_venv_activation = true,
+        picker_options = {
+          snacks = {
+            layout = { preset = "default", preview = { main = false, enabled = false }, fullscreen = false },
+          },
+        }, -- options for pickers (only snacks for now). Example: snacks = {layout = { preset = 'default', preview = { main = false, enabled = false }, fullscreen = false },					},},
         picker = "snacks",
       },
     },

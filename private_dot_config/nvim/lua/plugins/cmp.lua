@@ -67,10 +67,10 @@ return {
         ["<C-j>"] = { "select_next", "fallback" },
         ["<C-k>"] = { "select_prev", "fallback" },
       },
-      completion = {
-        menu = { auto_show = true }, -- 菜单自动显示
-        ghost_text = { enabled = true }, -- 为 noice.nvim 启用
-      },
+      -- completion = {
+      --   menu = { auto_show = true }, -- 菜单自动显示
+      --   ghost_text = { enabled = true }, -- 为 noice.nvim 启用
+      -- },
       sources = function()
         local type = vim.fn.getcmdtype()
         -- 搜索模式（/ 和 ?）

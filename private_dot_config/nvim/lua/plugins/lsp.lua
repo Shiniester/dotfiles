@@ -16,13 +16,22 @@
 -- }
 
 return {
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = function()
+  --     local keys = require("lazyvim.plugins.lsp.keymaps").get()
+  --     -- 移除插入模式下的 <C-k> 映射
+  --     keys[#keys + 1] = { "<c-k>", false, mode = "i" }
+  --   end,
+  -- },
   {
     "neovim/nvim-lspconfig",
-    opts = function()
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      -- 移除插入模式下的 <C-k> 映射
-      keys[#keys + 1] = { "<c-k>", false, mode = "i" }
-    end,
+    opts = {
+      servers = {
+        marksman = { enabled = false },
+        markdown_oxide = {},
+      },
+    },
   },
   {
     "rmagatti/goto-preview",

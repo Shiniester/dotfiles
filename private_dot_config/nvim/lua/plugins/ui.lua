@@ -14,6 +14,20 @@ return {
   {
     "folke/which-key.nvim",
     opts = {
+      spec = {
+        {
+          "<leader>a",
+          group = "+ai",
+          mode = { "n", "x" },
+          icon = { icon = "󰚩", color = "azure" },
+        },
+        {
+          "<leader>m",
+          group = "+markdown",
+          mode = { "n", "x" },
+          icon = { icon = "", color = "azure" },
+        },
+      },
       win = {
         border = "rounded",
       },
