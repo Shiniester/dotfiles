@@ -1,0 +1,20 @@
+// // Enable blur 
+// window-rule {
+//     background-effect {
+//         xray true 
+//         blur true
+//     }
+// }
+//
+// // Enable blur behind the fuzzel launcher.
+// layer-rule {
+//     match namespace="dms:bar"
+//     background-effect {
+//         blur false
+//         xray false
+//     }
+// }
+
+output "eDP-1" {
+    scale 1.45
+}
