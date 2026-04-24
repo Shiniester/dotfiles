@@ -133,8 +133,8 @@ function y() {
 }
 
 # clash proxy
-export http_proxy="http://127.0.0.1:7897"
-export https_proxy="http://127.0.0.1:7897"
+# export http_proxy="http://127.0.0.1:7897"
+# export https_proxy="http://127.0.0.1:7897"
 
 # ros
 ros_noetic() {
@@ -170,8 +170,8 @@ export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
 export PATH=$PATH:~/.local/bin
 
 # Aliases
-alias ls='ls --color=auto'
-alias lse='eza --icons=auto'
+# alias ls='ls --color=auto'
+alias ls='eza --icons=auto'
 alias lst='eza -T --icons=auto'
 alias grep='grep --color=auto'
 alias c='clear'
@@ -204,3 +204,16 @@ fi
 unset __conda_setup 
 }
 # <<< conda initialize <<<
+if [[ "$CONDA_DEFAULT_ENV" == "mpd" ]]; then
+    export LD_LIBRARY_PATH=~/.conda/envs/mpd/lib:$LD_LIBRARY_PATH
+fi
+
+# zsh-syntax-highlighting-mocha
+source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
+# catppuccin-fzf-mocha
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
+--color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
+--color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
+--color=selected-bg:#45475A \
+--color=border:#6C7086,label:#CDD6F4"
