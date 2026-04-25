@@ -1,6 +1,7 @@
 [mgr]
 ratio = [1, 2, 2]
-sort_by = "extension"
+sort_by = "mtime"
+linemode = "btime"
 
 [preview]
 max_width = 900
@@ -25,6 +26,14 @@ extract = [
   { run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
   { run = 'ya pub extract --list %*', desc = "Extract here", for = "windows" },
 ]
+image = [
+  { run = 'imv "$@"', orphan = true, desc = "imv",for = "unix" },
+]
+
+# image open
+[[open.prepend_rules]]
+mime = "image/*"
+use = ["image", "open", "reveal"]
 
 # git
 [[plugin.prepend_fetchers]]
@@ -51,3 +60,8 @@ run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"'
 [[plugin.prepend_previewers]]
 mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}"
 run = 'piper -- ouch list --tree "$1"'
+
+# eza-preview
+[[plugin.prepend_previewers]]
+url = "*/"
+run = "eza-preview"
