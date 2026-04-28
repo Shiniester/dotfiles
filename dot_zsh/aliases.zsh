@@ -1,0 +1,21 @@
+# Alias shortcuts
+# Aliases
+# alias ls='ls --color=auto'
+alias ls='eza --icons=auto'
+alias lst='eza -T --icons=auto'
+alias grep='grep --color=auto'
+alias c='clear'
+alias v='nvim'
+alias q='exit'
+alias df='duf'
+alias update='paru -Syu'
+alias copy='wl-copy'
+alias gitg='git log --graph --all --oneline'
+alias lg='lazygit'
+alias ff='fastfetch'
+alias cnm='cnmplayer'
+
+# alias dn='~/Notes/Extras/Templates/dailynote.sh'
+alias tocs='~/Notes/Extras/Templates/TOCs.sh'
+alias ubuntu20='distrobox enter ubuntu-2004'
+alias ubuntu22='distrobox enter ubuntu-2204'
