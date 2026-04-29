@@ -1,0 +1,41 @@
+// DMS Window Rules - Managed by DankMaterialShell
+// Do not edit manually - changes may be overwritten
+
+// @id=wr_1777220755678597928 @name=google-chrome
+window-rule {
+    match app-id="^google-chrome$"
+    opacity 0.92
+    open-maximized true
+    background-effect {
+        blur true
+    }
+}
+
+// @id=wr_1777221507570932802 @name=QQ
+window-rule {
+    match app-id="^QQ$"
+    opacity 0.80
+    open-floating true
+    background-effect {
+        blur true
+    }
+}
+
+// @id=dms_rule_2 @name=
+window-rule {
+    match app-id="^wechat$"
+    opacity 0.80
+    open-floating true
+    background-effect {
+        blur true
+    }
+}
+
+// @id=wr_1777447676489286153 @name=org.pwmt.zathura
+window-rule {
+    match app-id="^org.pwmt.zathura$"
+    opacity 0.92
+    background-effect {
+        blur true
+    }
+}
