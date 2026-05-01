@@ -1,7 +1,7 @@
 [mgr]
 ratio = [1, 2, 2]
-sort_by = "mtime"
-linemode = "btime"
+sort_by = "alphabetical"
+linemode = "mtime"
 
 [preview]
 max_width = 900
@@ -27,8 +27,12 @@ extract = [
   { run = 'ya pub extract --list %*', desc = "Extract here", for = "windows" },
 ]
 image = [
-  { run = 'imv "$@"', orphan = true, desc = "imv",for = "unix" },
+  { run = 'imv -n "$1" "$(dirname "$1")"', orphan = true, desc = "imv (dir, start at file)", for = "unix" },
 ]
+# image = [
+#   { run = 'imv "$@"', orphan = true, desc = "imv",for = "unix" },
+#   { run = 'imv -r "$(dirname "$1")"', orphan = true, desc = "imv (dir)", for = "unix" },
+# ]
 
 # image open
 [[open.prepend_rules]]
