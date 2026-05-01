@@ -1,33 +1,107 @@
--- copy-time (Linux version)
--- Requires xclip installed
+require("mp")
+require("mp.msg")
 
--- Copies current timecode in HH:MM:SS.MS format to clipboard
+-- Copy the current time of the video to clipboard.
 
--------------------------------------------------------------------------------
--- Script adapted by Alex Rogers (https://github.com/linguisticmind)
--- Modified from https://github.com/Arieleg/mpv-copyTime
--- Released under GNU GPL 3.0
+local function platform_type()
+	-- based on https://stackoverflow.com/a/30960054
+	-- cannot distinguish between Linux and MacOS reliably
+	local BinaryFormat = package.cpath:match("%p[\\|/]?%p(%a+)")
+	if BinaryFormat == "dll" then
+		return "windows"
+	else
+		return "unix"
+	end
+end
 
-require "mp"
+local function command_exists(cmd)
+	local pipe = io.popen("type " .. cmd .. ' > /dev/null 2> /dev/null; printf "$?"', "r")
+	return pipe:read() == "0"
+end
+
+local function divmod(a, b)
+	local div = math.floor(a / b)
+	return div, a % b
+end
+-- local function divmod(a, b)
+-- 	return a / b, a % b
+-- end
 
 local function set_clipboard(text)
-  command = string.format("echo -n %s | xclip -selection clipboard", text)
-  mp.commandv("run", "/bin/bash", "-c",  command)
+	local platform = platform_type()
+
+	if platform == "windows" then
+		mp.commandv("run", "powershell", "set-clipboard", text)
+		return true
+	elseif platform == "unix" then
+		-- copy using all available commands (e.g. on Linux, might have xclip AND wl-copy installed)
+		local found_any = false
+
+		if command_exists("xclip") then
+			-- linux + X11
+			local pipe = io.popen("xclip -silent -in -selection clipboard", "w")
+			pipe:write(text)
+			pipe:close()
+			found_any = true
+		end
+
+		if command_exists("wl-copy") then
+			-- linux + Wayland
+			local pipe = io.popen("wl-copy", "w")
+			pipe:write(text)
+			pipe:close()
+			found_any = true
+		end
+
+		if command_exists("pbcopy") then
+			-- MacOS
+			local pipe = io.popen("pbcopy", "w")
+			pipe:write(text)
+			pipe:close()
+			found_any = true
+		end
+
+		if not found_any then
+			mp.msg.error("no supported clipboard command found")
+		end
+		return found_any
+	else
+		mp.msg.error("unknown platform " .. platform)
+		return false
+	end
 end
 
-function copy_time()
-  local time_pos = mp.get_property_number("time-pos")
-  local time_in_seconds = time_pos
-  local time_seg = time_pos % 60
-  time_pos = time_pos - time_seg
-  local time_hours = math.floor(time_pos / 3600)
-  time_pos = time_pos - (time_hours * 3600)
-  local time_minutes = time_pos/60
-  time_seg,time_ms=string.format("%.03f", time_seg):match"([^.]*).(.*)"
-  time = string.format("%02d:%02d:%02d.%s", time_hours, time_minutes, time_seg, time_ms)
-  set_clipboard(time)
-  mp.osd_message(string.format("Copied to clipboard: %s", time))
+local function copy_time()
+	local time_pos = mp.get_property_number("time-pos")
+	local minutes, remainder = divmod(time_pos, 60)
+	local hours, minutes = divmod(minutes, 60)
+	local seconds = math.floor(remainder)
+	local milliseconds = math.floor((remainder - seconds) * 1000)
+	local time = string.format("%02d:%02d:%02d.%03d", hours, minutes, seconds, milliseconds)
+
+	if set_clipboard(time) then
+		mp.osd_message(string.format("Copied to Clipboard: %s", time))
+	else
+		mp.osd_message("Failed to copy time to clipboard")
+	end
 end
 
--- the keybinding here is set to nil on purpose 'cause I modified the keybinding (in input.conf)
-mp.add_key_binding(nil, "copy-time", copy_time)
+local function copy_time_to_file()
+	local file_name = "file.txt"
+	local time_pos = mp.get_property_number("time-pos")
+	local minutes, remainder = divmod(time_pos, 60)
+	local hours, minutes = divmod(minutes, 60)
+	local seconds = math.floor(remainder)
+	local time = string.format("%02d:%02d:%02d", hours, minutes, seconds)
+
+	mp.osd_message(string.format("Copied to %s", file_name))
+
+	local file = io.open(file_name, "a")
+	file:write(time .. "\n")
+	file:close()
+
+	mp.osd_message(string.format("Copied to %s: %s", file_name, time))
+end
+
+mp.add_key_binding("Ctrl+c", "copy_time", copy_time)
+mp.add_key_binding("Ctrl+Shift+c", "copy_time_to_file", copy_time_to_file)
