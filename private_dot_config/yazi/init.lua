@@ -5,6 +5,7 @@ th.git.added_sign = "A"
 th.git.untracked_sign = "U"
 th.git.ignored_sign = "I"
 th.git.deleted_sign = "D"
+
 -- th.git.updated_sign = ""
 require("git"):setup()
 require("full-border"):setup({
