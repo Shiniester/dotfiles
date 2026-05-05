@@ -32,11 +32,3 @@ ros2_humble(){
     eval "$(register-python-argcomplete3 colcon)"
 }
 
-# thefuck
-if command -v thefuck >/dev/null 2>&1; then
-  fuck() {
-    unset -f fuck
-    eval "$(thefuck --alias)"
-    fuck "$@"
-  }
-fi

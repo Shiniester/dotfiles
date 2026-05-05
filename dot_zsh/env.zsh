@@ -29,3 +29,4 @@ unset __conda_setup
 if [[ "$CONDA_DEFAULT_ENV" == "mpd" ]]; then
     [[ -d "$HOME/.conda/envs/mpd/lib" ]] && ld_library_path=("$HOME/.conda/envs/mpd/lib" $ld_library_path)
 fi
+
