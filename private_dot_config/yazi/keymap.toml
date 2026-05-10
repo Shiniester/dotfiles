@@ -30,6 +30,11 @@ desc = "Go forward to the next directory"
 
 # goto
 [[mgr.prepend_keymap]]
+on = ["g", "a"]
+run = "cd ~/.agent"
+desc = "Go to the agent directory"
+
+[[mgr.prepend_keymap]]
 on = ["g", "c"]
 run = "cd ~/.config"
 desc = "Go to the config directory"
@@ -55,6 +60,11 @@ run = "cd ~/.local"
 desc = "Go to the local directory"
 
 [[mgr.prepend_keymap]]
+on = ["g", "s"]
+run = "cd ~/.local/share"
+desc = "Go to the share directory"
+
+[[mgr.prepend_keymap]]
 on = ["g", "t"]
 run = "cd ~/.local/share/Trash/files"
 desc = "Go to the trash directory"
@@ -71,11 +81,11 @@ desc = "Go to the Downloads directory"
 
 [[mgr.prepend_keymap]]
 on = ["g", "D"]
-run = "cd ~/Documents"
-desc = "Go to the Documents directory"
+run = "cd ~/Desktop"
+desc = "Go to the Desktop directory"
 
 [[mgr.prepend_keymap]]
-on = ["g", "Z"]
+on = ["g", "z"]
 run = "cd ~/Downloads/Zip"
 desc = "Go to the Zip directory"
 
@@ -93,11 +103,6 @@ desc = "Go to the OpenSource directory"
 on = ["g", "O"]
 run = "cd ~/Downloads/Doc"
 desc = "Go to the Office directory"
-
-[[mgr.prepend_keymap]]
-on = ["g", "z"]
-run = "cd ~/Desktop"
-desc = "Go to the Desktop directory"
 
 [[mgr.prepend_keymap]]
 on = ["g", "M"]
