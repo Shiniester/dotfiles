@@ -12,7 +12,3 @@ fi
 # source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# direnv
-if command -v direnv >/dev/null 2>&1; then
-  eval "$(direnv hook zsh)"
-fi

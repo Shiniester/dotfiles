@@ -30,3 +30,22 @@ if [[ "$CONDA_DEFAULT_ENV" == "mpd" ]]; then
     [[ -d "$HOME/.conda/envs/mpd/lib" ]] && ld_library_path=("$HOME/.conda/envs/mpd/lib" $ld_library_path)
 fi
 
+# auto acitvate venv
+auto_activate_venv() {
+  # 检查当前目录下是否存在虚拟环境 (以 .venv 为例)
+  if [[ -f ".venv/bin/activate" ]]; then
+    # 如果环境未激活，或者激活的环境不是当前的这个，则进行激活
+    if [[ "$VIRTUAL_ENV" != "$PWD/.venv" ]]; then
+      source .venv/bin/activate
+    fi
+  # 如果离开了包含 .venv 的目录，且当前处于激活状态，则退出环境
+  elif [[ -n "$VIRTUAL_ENV" ]]; then
+    deactivate
+  fi
+}
+
+#  将函数绑定到 chpwd 钩子，确保每次 cd 都会触发
+add-zsh-hook chpwd auto_activate_venv
+
+# 首次启动 Shell 时手动调用一次，确保初始目录也被检测
+auto_activate_venv
