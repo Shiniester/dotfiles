@@ -8,7 +8,7 @@
 
 # This defines how new windows (split panes will be open)
 # https://sw.kovidgoyal.net/kitty/layouts/#arrange-windows
-layout tall
+layout fat
 
 # How to get the title from within kitty:
 # kitten @ ls | jq -r '.[] | select(.is_focused) | .tabs[] | select(.is_focused) | .windows[] | select(.is_focused) | .title'

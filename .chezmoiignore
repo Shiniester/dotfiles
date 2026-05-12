@@ -1,5 +1,7 @@
 private_dot_config/mpv/dot_git/**
 private_dot_config/mpv/shaders/private_cache/**
+private_dot_config/kitty/dank-tabs.conf
+private_dot_config/kitty/dank-theme.conf
 
 # Shaders cache directory
 

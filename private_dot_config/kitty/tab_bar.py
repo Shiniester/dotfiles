@@ -22,7 +22,7 @@ from kitty.tab_bar import (
     TabBarData,
     as_rgb,
     draw_attributed_string,
-    draw_tab_with_powerline,
+    draw_title,
 )
 from kitty.utils import color_as_int
 
@@ -45,6 +45,13 @@ ACTIVE_TAB_FG = as_rgb(
         else opts.color15
     )
 )
+ACTIVE_TAB_BG = as_rgb(
+    color_as_int(
+        opts.active_tab_background
+        if opts.active_tab_background is not None
+        else TAB_BAR_BACKGROUND
+    )
+)
 INACTIVE_TAB_FG = as_rgb(
     color_as_int(
         opts.inactive_tab_foreground
@@ -59,6 +66,8 @@ INACTIVE_TAB_BG = as_rgb(
         else TAB_BAR_BACKGROUND
     )
 )
+ACTIVE_INDEX_BG = as_rgb(color_as_int(opts.color12))
+INACTIVE_INDEX_BG = as_rgb(color_as_int(opts.color15))  # 亮灰色 (Light Gray)
 
 # 右侧状态栏单元格特定颜色
 PROCESS_ICON_BG_COLOR = as_rgb(color_as_int(opts.color10))  # 亮绿色 (Light Green)
@@ -80,6 +89,7 @@ ICON_FG_COLOR = ACTIVE_TAB_FG
 
 # --- 图标定义 ---
 LEFT_HALF_CIRCLE = ""
+RIGHT_HALF_CIRCLE = ""
 CHARGING_ICON = "󰚥 "
 UNPLUGGED_ICONS = {
     10: "󰂃 ",
@@ -390,8 +400,8 @@ def _window_name_cell() -> dict:
             if len(path_parts) >= 2:  # Check if we have at least two levels
                 last_two_levels_str = "/".join(path_parts[-2:])
 
-                # Determine how much of last_two_levels_str can be shown after "..."
-                available_space_for_text = MAX_WINDOW_TITLE_LENGTH - 3  # 3 for "..."
+                # Determine how much of last_two_levels_str can be shown after "…"
+                available_space_for_text = MAX_WINDOW_TITLE_LENGTH - 1  # 1 for "…"
 
                 final_text_part = ""
                 if (
@@ -403,16 +413,16 @@ def _window_name_cell() -> dict:
                         ]
                     else:
                         final_text_part = last_two_levels_str
-                # If available_space_for_text is 0 (MAX_WINDOW_TITLE_LENGTH is 3), final_text_part remains ""
-                # and window_title becomes "..."
+                # If available_space_for_text is 0 (MAX_WINDOW_TITLE_LENGTH is 1), final_text_part remains ""
+                # and window_title becomes "…"
 
                 window_title = "…" + final_text_part
                 applied_custom_truncation = True
 
         if not applied_custom_truncation:
             # Fallback: If custom rule didn't apply (e.g., not a path with >= 2 levels)
-            # This fallback ensures the string is truncated to MAX_WINDOW_TITLE_LENGTH with "..." at the start.
-            available_space_for_text = MAX_WINDOW_TITLE_LENGTH - 3  # 3 for "..."
+            # This fallback ensures the string is truncated to MAX_WINDOW_TITLE_LENGTH with "…" at the start.
+            available_space_for_text = MAX_WINDOW_TITLE_LENGTH - 1  # 1 for "…"
             final_text_part = ""
             if available_space_for_text > 0:
                 final_text_part = window_title[-available_space_for_text:]
@@ -435,8 +445,8 @@ def _right_status_cells() -> list[dict]:
         _window_name_cell(),
         _layout_num_cell(),
         _shell_process_cell(),
-        _battery_cell(),
-        _datetime_cell(),
+        # _battery_cell(),
+        # _datetime_cell(),
     ]
 
 
@@ -488,6 +498,38 @@ def _redraw_tab_bar(_) -> None:
 timer_id = None
 
 
+def _draw_capsule_tab(
+    draw_data: DrawData,
+    screen: Screen,
+    tab: TabBarData,
+    max_title_length: int,
+    index: int,
+) -> int:
+    """绘制胶囊样式的 Tab"""
+    is_active = tab.is_active
+    default_bg = as_rgb(int(draw_data.default_bg))
+    title_bg = INACTIVE_TAB_BG
+    title_fg = INACTIVE_TAB_FG
+    index_bg = ACTIVE_TAB_BG if is_active else INACTIVE_INDEX_BG
+    index_fg = ACTIVE_TAB_FG
+
+    screen.cursor.bg = title_bg
+    screen.cursor.fg = title_fg
+    draw_title(draw_data, screen, tab, index)
+    screen.draw("  ")
+
+    screen.cursor.bg = index_bg
+    screen.cursor.fg = index_fg
+    index_text = f" {index}"
+    screen.draw(index_text)
+
+    screen.cursor.fg = index_bg
+    screen.cursor.bg = default_bg
+    screen.draw(RIGHT_HALF_CIRCLE)
+
+    return screen.cursor.x
+
+
 def draw_tab(
     draw_data: DrawData,
     screen: Screen,
@@ -502,8 +544,6 @@ def draw_tab(
     global timer_id
     if timer_id is None:
         timer_id = add_timer(_redraw_tab_bar, REFRESH_TIME, True)
-    draw_tab_with_powerline(
-        draw_data, screen, tab, before, max_title_length, index, is_last, extra_data
-    )
+    _draw_capsule_tab(draw_data, screen, tab, max_title_length, index)
     _draw_right_status(screen, is_last, draw_data)
     return screen.cursor.x
