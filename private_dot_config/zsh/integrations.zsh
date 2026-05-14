@@ -1,4 +1,5 @@
-# External tool integrations (fzf, zoxide, direnv)
+# External tool integrations (fzf, zoxide, starship)
+eval "$(starship init zsh)"
 # Shell integrations
 if [[ -t 0 ]] && command -v fzf >/dev/null 2>&1; then
   source <(fzf --zsh)

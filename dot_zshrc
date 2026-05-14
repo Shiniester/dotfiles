@@ -5,12 +5,12 @@
 #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # fi
 
-ZSH_DIR="$HOME/.config/.zsh"
+ZSH_DIR="$HOME/.config/zsh"
 for zsh_file in \
   core.zsh \
   themes.zsh \
-  plugins.zsh \
   completion.zsh \
+  plugins.zsh \
   interactive.zsh \
   integrations.zsh \
   tools.zsh \

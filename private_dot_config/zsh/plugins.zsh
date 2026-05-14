@@ -3,16 +3,16 @@
 # zinit ice depth=1; zinit light romkatv/Powerlevel10k
 
 # Add in zsh plugins (delayed load)
+zinit ice wait"1" lucid
+zinit light Aloxaf/fzf-tab
 zinit ice wait"0" lucid
 zinit light zsh-users/zsh-autosuggestions
 zinit ice wait"1" lucid
 zinit light zsh-users/zsh-completions
 zinit ice wait"1" lucid
-zinit light Aloxaf/fzf-tab
+zinit light zsh-users/zsh-syntax-highlighting
 zinit ice depth=1 wait"1" lucid
 zinit light jeffreytse/zsh-vi-mode
-zinit ice wait"1" lucid
-zinit light zsh-users/zsh-syntax-highlighting
 zinit ice wait"1" lucid
 zinit light PsychArch/nlsh
 
@@ -46,4 +46,3 @@ compinit -C -d "${XDG_CACHE_HOME:-$HOME/.cache}/zcompdump-${ZSH_VERSION}-${HOST}
 
 zinit cdreplay -q
 
-eval "$(starship init zsh)"

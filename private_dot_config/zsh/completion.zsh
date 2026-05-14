@@ -2,6 +2,7 @@
 # Completion styling
 # comopletion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 # fzf-tab
@@ -22,16 +23,10 @@ zstyle ':fzf-tab:complete:*' fzf-preview '
     fi
 '
 # custom fzf flags
-# # NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
+# 使用tab键接受选择
 # zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
-# # To make fzf-tab follow FZF_DEFAULT_OPTS.
-# # NOTE: This may lead to unexpected behavior since some flags break this plugin. See Aloxaf/fzf-tab#455.
-# zstyle ':fzf-tab:*' use-fzf-default-opts yes
-# switch group using `<` and `>`
+# 让fzf-tab遵循默认的fzf选项
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+# 使用 `<` 和 `>` 切换group
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
-# carapace
-autoload -U compinit && compinit
-export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
-zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-source <(carapace _carapace)

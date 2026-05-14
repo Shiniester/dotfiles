@@ -1,9 +1,9 @@
 # Interactive shell behavior (keybindings and history)
 # Keybindings
-bindkey -v
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
-bindkey '^[w' kill-region
+bindkey -v # Vi 模式
+bindkey '^p' history-search-backward # 前一个匹配历史命令
+bindkey '^n' history-search-forward # 后一个匹配历史命令
+bindkey '^[w' kill-region # 删除到单词开头 
 
 # History
 HISTSIZE=5000
