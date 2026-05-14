@@ -1,0 +1,23 @@
+# Alias shortcuts
+# Aliases
+# alias ls='ls --color=auto'
+alias ls='eza --icons=auto'
+alias lst='eza -T --icons=auto'
+alias ssh='kitten ssh'
+alias grep='grep --color=auto'
+alias c='clear'
+alias v='nvim'
+alias q='exit'
+alias df='duf'
+alias copy='wl-copy'
+alias gitg='git log --graph --all --oneline'
+alias lg='lazygit'
+alias ff='fastfetch --config examples/6.jsonc'
+alias cnm='cnmplayer'
+alias update='echo "正在更新系统..." && paru -Syu'
+alias clean='echo "清理未安装包缓存..."; paru -Scc; echo "清理孤立依赖..."; sudo pacman -Rns $(pacman -Qdtq); echo "清理旧缓存..."; sudo paccache -r'
+
+# alias dn='~/Notes/Extras/Templates/dailynote.sh'
+alias tocs='~/Notes/Extras/Templates/TOCs.sh'
+alias ubuntu20='distrobox enter ubuntu-2004'
+alias ubuntu22='distrobox enter ubuntu-2204'
