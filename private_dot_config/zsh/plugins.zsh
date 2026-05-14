@@ -1,3 +1,4 @@
+# plugin存放zinit插件和一些插件的配置，插件的加载方式分为两种，一种是直接加载，另一种是延迟加载（delayed load），延迟加载可以加快shell的启动速度，因为它会在shell启动后的一段时间内才加载插件。
 # Plugin manager and plugin/snippet loading
 # Add in Powerlevel10k
 # zinit ice depth=1; zinit light romkatv/Powerlevel10k

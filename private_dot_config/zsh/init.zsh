@@ -1,3 +1,5 @@
+# init是一个专门用来放置一些shell的基础设置的文件，比如path的去重、zinit的安装和加载等
+# Shell initialization (path de-dup and zinit bootstrap)
 # Keep path arrays unique to avoid growth on repeated sourcing
 typeset -U path
 typeset -TU LD_LIBRARY_PATH ld_library_path

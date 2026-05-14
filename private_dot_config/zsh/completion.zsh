@@ -6,6 +6,7 @@ zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 # fzf-tab
+zstyle ':fzf-tab:complete:*:options' fzf-preview ''
 zstyle ':fzf-tab:complete:*' fzf-preview '
     if [[ -d $realpath ]]; then
         eza --level=1 --tree --color=always --icons=auto "$realpath"
@@ -14,12 +15,11 @@ zstyle ':fzf-tab:complete:*' fzf-preview '
         if [[ "$mimetype" == text/* ]]; then
             bat --color=always --style=numbers --line-range=:50 "$realpath"
         elif [[ "$mimetype" == image/* ]]; then
+            preview_flag="${XDG_CACHE_HOME:-$HOME/.cache}/fzf-tab/kitty-preview"
+            mkdir -p "$(dirname "$preview_flag")"
+            : > "$preview_flag"
             kitty +kitten icat --clear --transfer-mode=memory --stdin=no --place=${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0 "$realpath" 2>/dev/null
-        else
-            echo "无法显示该内容"
         fi
-    else
-        echo "无法显示该内容"
     fi
 '
 # custom fzf flags
@@ -29,4 +29,3 @@ zstyle ':fzf-tab:complete:*' fzf-preview '
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 # 使用 `<` 和 `>` 切换group
 zstyle ':fzf-tab:*' switch-group '<' '>'
-

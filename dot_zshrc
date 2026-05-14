@@ -7,13 +7,13 @@
 
 ZSH_DIR="$HOME/.config/zsh"
 for zsh_file in \
-  core.zsh \
+  init.zsh \
   themes.zsh \
   completion.zsh \
   plugins.zsh \
-  interactive.zsh \
-  integrations.zsh \
-  tools.zsh \
+  input.zsh \
+  hooks.zsh \
+  functions.zsh \
   env.zsh \
   aliases.zsh; do
   [[ -r "${ZSH_DIR}/${zsh_file}" ]] && source "${ZSH_DIR}/${zsh_file}"

@@ -1,4 +1,5 @@
-# User-defined helper functions and tool wrappers
+# User-defined shell functions and wrappers
+# 需要用户主动调用的函数
 # yazi
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -25,4 +26,3 @@ ros2_humble(){
     eval "$(register-python-argcomplete3 ros2)"
     eval "$(register-python-argcomplete3 colcon)"
 }
-
