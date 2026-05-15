@@ -12,9 +12,7 @@ for zsh_file in \
   completion.zsh \
   plugins.zsh \
   input.zsh \
-  hooks.zsh \
   functions.zsh \
-  env.zsh \
   aliases.zsh; do
   [[ -r "${ZSH_DIR}/${zsh_file}" ]] && source "${ZSH_DIR}/${zsh_file}"
 done
