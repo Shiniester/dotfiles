@@ -3,47 +3,65 @@
 # Add in Powerlevel10k
 # zinit ice depth=1; zinit light romkatv/Powerlevel10k
 
-# Add in zsh plugins (delayed load)
-zinit ice wait"1" lucid
-zinit light Aloxaf/fzf-tab
-zinit ice wait"0" lucid
-zinit light zsh-users/zsh-autosuggestions
-zinit ice wait"1" lucid
-zinit light zsh-users/zsh-completions
-zinit ice wait"1" lucid
-zinit light zsh-users/zsh-syntax-highlighting
-zinit ice depth=1 wait"1" lucid
-zinit light jeffreytse/zsh-vi-mode
-zinit ice wait"1" lucid
-zinit light PsychArch/nlsh
+# ==========================================
+# 1. 补全系统初始化 (Turbo 槽位 0a - 最先在后台加载)
+# ==========================================
+zinit wait"0a" lucid blockf atload"zicompinit; zicdreplay" for \
+    zsh-users/zsh-completions
 
-# Add in snippets
-zinit ice wait"2" lucid
-zinit snippet OMZL::git.zsh
-zinit ice wait"2" lucid
-zinit snippet OMZP::git
-zinit ice wait"2" lucid
-zinit snippet OMZP::sudo
-zinit ice wait"2" lucid
-zinit snippet OMZP::archlinux
-zinit ice wait"2" lucid
-zinit snippet OMZP::aws
-zinit ice wait"2" lucid
-zinit snippet OMZP::kubectl
-zinit ice wait"2" lucid
-zinit snippet OMZP::kubectx
-zinit ice wait"2" lucid
-zinit snippet OMZP::command-not-found
+# ==========================================
+# 2. 补全菜单劫持 (Turbo 槽位 0b - 严格等待 0a 完成)
+# 确保在 compinit 之后运行
+# ==========================================
+zinit wait"0b" lucid for \
+    Aloxaf/fzf-tab
+
+# ==========================================
+# 3. 自动建议 (Turbo 槽位 0b)
+# 使用 atload 强行唤醒，解决由于异步加载导致新建终端时不立刻出现提示的问题
+# ==========================================
+zinit wait"0b" lucid atload"!_zsh_autosuggest_start" for \
+    zsh-users/zsh-autosuggestions
+
+# ==========================================
+# 4. 语法高亮 (Turbo 槽位 0c - 绝对最后加载)
+# 必须等前面所有 UI 插件挂载完毕后再上色
+# ==========================================
+zinit wait"0c" lucid for \
+    zdharma-continuum/fast-syntax-highlighting
+
+# ==========================================
+# 5. 其他片段和插件 (继续使用 wait"1" / wait"2")
+# ==========================================
+zinit wait"1" lucid for \
+    PsychArch/nlsh \
+    depth=1 jeffreytse/zsh-vi-mode
+
+# ==========================================
+#  Oh My Zsh 片段 (wait"2")
+# 这些片段的补全会在 zicompinit 之后加载，Zinit 会自动处理它们的 fpath
+# ==========================================
+zinit wait"2" lucid for \
+    OMZL::grep.zsh \
+    OMZL::termsupport.zsh \
+    OMZL::cli.zsh \
+    OMZL::functions.zsh \
+    OMZL::history.zsh \
+    OMZL::directories.zsh \
+    OMZL::clipboard.zsh \
+    OMZL::git.zsh \
+    OMZP::git \
+    OMZP::sudo \
+    OMZP::archlinux \
+    OMZP::aws \
+    OMZP::kubectl \
+    OMZP::kubectx \
+    OMZP::command-not-found
+
 
 # nlsh configuration
 export OPENAI_API_KEY="sk-1ed3978fea2447979fe7878608088c41"   # Required
 export OPENAI_MODEL="deepseek-v4-flash"              # Optional, default: z-ai/glm-4.7
 # Example models: x-ai/grok-4.1-fast, z-ai/glm-4.7
 export OPENAI_URL_BASE="https://api.deepseek.com/" # Optional, default: https://openrouter.ai/api/v1
-
-# Load completions (cached for faster shell startup)
-autoload -Uz compinit
-compinit -C -d "${XDG_CACHE_HOME:-$HOME/.cache}/zcompdump-${ZSH_VERSION}-${HOST}"
-
-zinit cdreplay -q
 
