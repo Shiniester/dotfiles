@@ -12,5 +12,4 @@ layout fat
 
 # How to get the title from within kitty:
 # kitten @ ls | jq -r '.[] | select(.is_focused) | .tabs[] | select(.is_focused) | .windows[] | select(.is_focused) | .title'
-# launch --title "dotfiles"
-launch --title "Chezmoi" --cwd ~/.local/share/chezmoi
+launch --title "Music" --cwd ~ zsh -i -c 'cnmplayer'

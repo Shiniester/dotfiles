@@ -12,4 +12,4 @@ layout fat
 
 # How to get the title from within kitty:
 # kitten @ ls | jq -r '.[] | select(.is_focused) | .tabs[] | select(.is_focused) | .windows[] | select(.is_focused) | .title'
-launch --title "config" --cwd ~/.config zsh -i -c 'nvim'
+launch --title "Config" --cwd ~/.config zsh -i -c 'nvim'

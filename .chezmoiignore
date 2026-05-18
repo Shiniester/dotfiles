@@ -1,7 +1,57 @@
-private_dot_config/mpv/dot_git/**
-private_dot_config/mpv/shaders/private_cache/**
-private_dot_config/kitty/dank-tabs.conf
-private_dot_config/kitty/dank-theme.conf
+# 忽略所有以 .txt 结尾的文件
+*.txt
 
+# 忽略目标目录下的子目录中的所有以 .txt 结尾的文件，但不忽略子目录的子目录中的 .txt 文件；例如 a/b/c.txt 不会被忽略
+# */*.txt 
+
+# 忽略以 # 结尾的 org-mode 临时文件
+*/*.org#  
+
+# 忽略backups目录，但不忽略其内容
+# backups/
+
+# 忽略backups目录中的所有内容，但不忽略backups目录本身
+# backups/**
+
+# ==========================================
+# 🛑 全局黑名单 (屏蔽常见敏感与垃圾文件)
+# ==========================================
+
+# 1. Git 内部文件 (防止递归读取，提升性能)
+**/.git
+**/.git/**
+
+# 2. 敏感历史记录 (绝对安全红线)
+**/.bash_history
+**/.zsh_history
+**/.zhistory
+**/.python_history
+**/.node_repl_history
+
+# 3. 系统垃圾文件 (跨平台整洁)
+**/.DS_Store
+**/Thumbs.db
+**/desktop.ini
+
+# 4. Zsh 与终端缓存文件
+**/.zcompdump*
+
+# 5. 编辑器临时文件
+**/*.swp
+**/*.swo
+**/*~
+
+# 6. 本地虚拟环境与依赖
+**/node_modules/
+**/__pycache__/
+**/.venv/
+
+# 7. 各类备份文件 (任意层级)
+**/*.bak
+**/*.backup
+
+.config/kitty/dank-tabs.conf
+.config/kitty/dank-theme.conf
+.config/zsh/secrets.zsh
 # Shaders cache directory
 

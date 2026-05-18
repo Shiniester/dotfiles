@@ -1,49 +1,73 @@
 # User-defined shell functions and wrappers
 # 需要用户主动调用的函数
 # yazi
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	command yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
-	command rm -f -- "$tmp"
-}
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-function conda_init(){ 
-__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/miniconda3/etc/profile.d/conda.sh"
+function conda_init() {
+    # 1. 定义查找路径的顺序
+    local conda_paths=("/opt/miniconda3" "/opt/conda" "$HOME/miniconda3")
+    local target_path=""
+
+    # 2. 依次遍历路径，检查是否存在 conda 可执行文件
+    for p in "${conda_paths[@]}"; do
+        if [ -x "$p/bin/conda" ]; then
+            target_path="$p"
+            break  # 找到了就跳出循环
+        fi
+    done
+
+    # 3. 执行初始化逻辑
+    if [ -n "$target_path" ]; then
+        # 核心修改：直接 source conda.sh 文件
+        if [ -f "$target_path/etc/profile.d/conda.sh" ]; then
+            source "$target_path/etc/profile.d/conda.sh"
+            echo "✅ Conda 初始化成功！现在可以使用 conda 命令了。(当前加载路径: $target_path)"
+        else
+            # 极少出现的情况：找不到 conda.sh，则退化为直接导入 PATH
+            export PATH="$target_path/bin:$PATH"
+            echo "⚠️ Conda 初始化：未找到 conda.sh，已将 bin 目录加入环境变量。(当前加载路径: $target_path)"
+        fi
+    
+    # 4. 如果所有路径都没找到，打印提示信息
     else
-        export PATH="/opt/miniconda3/bin:$PATH"
+        echo "❌ 警告: 未在系统中找到 Conda 运行环境。"
+        echo "🔍 已搜索路径: /opt/miniconda3, /opt/conda, ~/miniconda3"
+        echo "💡 提示: 请确认是否已安装 Conda。如果需要安装 Miniconda，请运行以下命令："
+        echo "curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
+        echo "bash Miniconda3-latest-Linux-x86_64.sh"
     fi
-fi
-unset __conda_setup 
 }
 # <<< conda initialize <<<
-if [[ "$CONDA_DEFAULT_ENV" == "mpd" ]]; then
-    [[ -d "$HOME/.conda/envs/mpd/lib" ]] && ld_library_path=("$HOME/.conda/envs/mpd/lib" $ld_library_path)
-fi
 
-# auto acitvate venv
+# 自动激活虚拟环境
 auto_activate_venv() {
-  # 检查当前目录下是否存在虚拟环境 (以 .venv 为例)
-  if [[ -f ".venv/bin/activate" ]]; then
-    # 如果环境未激活，或者激活的环境不是当前的这个，则进行激活
-    if [[ "$VIRTUAL_ENV" != "$PWD/.venv" ]]; then
-      source .venv/bin/activate
+  local current_dir="$PWD"
+  local venv_dir=""
+
+  # 从当前目录向上遍历查找 .venv
+  while [[ "$current_dir" != "/" && "$current_dir" != "" ]]; do
+    if [[ -f "$current_dir/.venv/bin/activate" ]]; then
+      venv_dir="$current_dir/.venv"
+      break
     fi
-  # 如果离开了包含 .venv 的目录，且当前处于激活状态，则退出环境
+    # 进入上一级目录继续查找
+    current_dir=$(dirname "$current_dir")
+  done
+
+  # 如果在当前目录或任意上级目录中找到了 .venv
+  if [[ -n "$venv_dir" ]]; then
+    # 如果环境未激活，或者当前激活的不是这一个，则进行激活
+    if [[ "$VIRTUAL_ENV" != "$venv_dir" ]]; then
+      source "$venv_dir/bin/activate"
+    fi
+  # 如果没找到 .venv（说明完全离开了项目目录），且当前处于激活状态，则退出
   elif [[ -n "$VIRTUAL_ENV" ]]; then
     deactivate
   fi
 }
 
-#  将函数绑定到 chpwd 钩子，确保每次 cd 都会触发
+# 将函数绑定到 chpwd 钩子，确保每次 cd 都会触发
 add-zsh-hook chpwd auto_activate_venv
 
 # 首次启动 Shell 时手动调用一次，确保初始目录也被检测
@@ -61,21 +85,3 @@ if ! (( ${precmd_functions[(Ie)_fzf_tab_clear_kitty_preview]} )); then
   precmd_functions+=(_fzf_tab_clear_kitty_preview)
 fi
 
-# ros
-ros_noetic() {
-    export ROS_VERSION=1
-    export ROS_PYTHON_VERSION=2
-    export ROS_DISTRO=noetic
-    source /opt/ros/noetic/setup.zsh
-}
-ros2_humble(){
-    export ROS_DOMAIN_ID=42
-    export ROS_VERSION=2
-    export ROS_PYTHON_VERSION=3
-    export ROS_DISTRO=humble
-    source /opt/ros/humble/setup.zsh
-
-    # 确保 ros2 和 colcon 的自动补全功能可用
-    eval "$(register-python-argcomplete3 ros2)"
-    eval "$(register-python-argcomplete3 colcon)"
-}

@@ -6,8 +6,15 @@
 # ==========================================
 # 1. 补全系统初始化 (Turbo 槽位 0a - 最先在后台加载)
 # ==========================================
-zinit wait"0a" lucid blockf atload"zicompinit; zicdreplay" for \
-    zsh-users/zsh-completions
+
+zinit  lucid for \
+    depth=1 jeffreytse/zsh-vi-mode \
+    OMZL::history.zsh \
+
+# 添加carapace补全
+zinit wait"0a" lucid blockf nocd \
+    atload"zicompinit; zicdreplay; source <(carapace _carapace)" \
+    for zsh-users/zsh-completions
 
 # ==========================================
 # 2. 补全菜单劫持 (Turbo 槽位 0b - 严格等待 0a 完成)
@@ -33,35 +40,28 @@ zinit wait"0c" lucid for \
 # ==========================================
 # 5. 其他片段和插件 (继续使用 wait"1" / wait"2")
 # ==========================================
-zinit wait"1" lucid for \
+zinit wait"0d" lucid for \
     PsychArch/nlsh \
-    depth=1 jeffreytse/zsh-vi-mode
 
 # ==========================================
 #  Oh My Zsh 片段 (wait"2")
 # 这些片段的补全会在 zicompinit 之后加载，Zinit 会自动处理它们的 fpath
 # ==========================================
+# sudo:连续按两次esc给当前命令添加sudo前缀
+# ==========================================
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/lib
 zinit wait"2" lucid for \
     OMZL::grep.zsh \
     OMZL::termsupport.zsh \
     OMZL::cli.zsh \
     OMZL::functions.zsh \
-    OMZL::history.zsh \
     OMZL::directories.zsh \
     OMZL::clipboard.zsh \
     OMZL::git.zsh \
     OMZP::git \
     OMZP::sudo \
-    OMZP::archlinux \
-    OMZP::aws \
-    OMZP::kubectl \
-    OMZP::kubectx \
-    OMZP::command-not-found
+    OMZP::ssh \
+    OMZP::extract \
+    OMZP::command-not-found \
 
-
-# nlsh configuration
-export OPENAI_API_KEY="sk-1ed3978fea2447979fe7878608088c41"   # Required
-export OPENAI_MODEL="deepseek-v4-flash"              # Optional, default: z-ai/glm-4.7
-# Example models: x-ai/grok-4.1-fast, z-ai/glm-4.7
-export OPENAI_URL_BASE="https://api.deepseek.com/" # Optional, default: https://openrouter.ai/api/v1
 
