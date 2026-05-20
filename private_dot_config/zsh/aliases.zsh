@@ -19,5 +19,10 @@ alias update='echo "正在更新系统..." && paru -Syu'
 alias clean='echo "清理未安装包缓存..."; paru -Scc; echo "清理孤立依赖..."; sudo pacman -Rns $(pacman -Qdtq); echo "清理旧缓存..."; sudo paccache -r; echo"清理日志..." ; sudo journalctl --vacuum-time=2weeks'
 alias py-clean='echo"清理conda缓存..."; conda clean --all; echo"清理uv缓存..."; uv cache clean;echo"清理pip缓存..."; pip cache purge'
 
+## kitten
+alias icat='kitten icat'
+
+
 alias ubuntu20='distrobox enter ubuntu-2004'
 alias ubuntu22='distrobox enter ubuntu-2204'
+

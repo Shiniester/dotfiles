@@ -72,16 +72,3 @@ add-zsh-hook chpwd auto_activate_venv
 
 # 首次启动 Shell 时手动调用一次，确保初始目录也被检测
 auto_activate_venv
-
-# Clear kitty image preview after fzf-tab exits
-_fzf_tab_clear_kitty_preview() {
-  local preview_flag="${XDG_CACHE_HOME:-$HOME/.cache}/fzf-tab/kitty-preview"
-  if [[ -f "$preview_flag" ]] && [[ -t 0 ]] && [[ "$TERM" == *kitty* ]] && command -v kitty >/dev/null 2>&1; then
-    rm -f -- "$preview_flag"
-    kitty +kitten icat --clear --stdin=no --transfer-mode=memory > /dev/tty 2>/dev/null
-  fi
-}
-if ! (( ${precmd_functions[(Ie)_fzf_tab_clear_kitty_preview]} )); then
-  precmd_functions+=(_fzf_tab_clear_kitty_preview)
-fi
-
