@@ -2,27 +2,15 @@
 
 A Yazi plugin whose behavior is consistent with flash.nvim in Neovim: from a search string it generates labels to jump to.
 
-https://github.com/DreamMaoMao/searchjump.yazi/assets/30348075/4a00eb39-211b-47c5-8e22-644a7d7bc6b1
+<https://github.com/DreamMaoMao/searchjump.yazi/assets/30348075/4a00eb39-211b-47c5-8e22-644a7d7bc6b1>
 
 > [!NOTE]
 > The latest main branch of Yazi is required at the moment.
 
-
 ## Install
 
-### Linux
-
 ```bash
-git clone https://github.com/DreamMaoMao/searchjump.yazi.git ~/.config/yazi/plugins/searchjump.yazi
-```
-
-### Windows
-
-With `Powershell` :
-
-```powershell
-if (!(Test-Path $env:APPDATA\yazi\config\plugins\)) {mkdir $env:APPDATA\yazi\config\plugins\}
-git clone https://github.com/DreamMaoMao/searchjump.yazi.git $env:APPDATA\yazi\config\plugins\searchjump.yazi
+ya pkg add Shiniester/searchjump
 ```
 
 ## Usage
@@ -49,7 +37,7 @@ desc = "searchjump mode"
 
 ```lua
 require("searchjump"):setup({
-	unmatch_fg = "#b2a496",
+ unmatch_fg = "#b2a496",
     match_str_fg = "#000000",
     match_str_bg = "#73AC3A",
     first_match_str_fg = "#000000",
@@ -60,13 +48,12 @@ require("searchjump"):setup({
     show_search_in_statusbar = false,
     auto_exit_when_unmatch = false,
     enable_capital_label = true,
-	-- mapdata = require("sjch").data,
-	search_patterns = ({"hell[dk]d","%d+.1080p","第%d+集","第%d+话","%.E%d+","S%d+E%d+",})
+ -- mapdata = require("sjch").data,
+ search_patterns = ({"hell[dk]d","%d+.1080p","第%d+集","第%d+话","%.E%d+","S%d+E%d+",})
 })
 ```
 
 you can extend map data from external data to map other languages to English letters for matching, such as Chinese data mapping tables:[sjch.yazi](https://github.com/DreamMaoMao/sjch.yazi).
-
 
 - When you see the single character label at the right of an entry, press the corresponding key to jump to the entry.
 - you can use `backspace` to delete a input character.

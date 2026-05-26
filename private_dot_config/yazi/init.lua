@@ -1,12 +1,6 @@
 local catppuccin_theme = require("yatline-catppuccin"):setup("mocha") -- or "latte" | "frappe" | "macchiato"
 
--- th.git = th.git or {}
--- th.git.modified_sign = "M"
--- th.git.added_sign = "A"
--- th.git.untracked_sign = "U"
--- th.git.ignored_sign = "I"
--- th.git.deleted_sign = "D"
-
+require("sshfs"):setup()
 -- th.git.updated_sign = ""
 require("git"):setup({
 	-- Order of status signs showing in the linemode

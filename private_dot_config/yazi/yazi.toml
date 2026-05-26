@@ -33,9 +33,14 @@ image = [
 ]
 doc = [
   { run = 'doxx "$@"', desc = "doxx", block = true, for = "unix" },
+  { run = 'gtk-launch wps-office-wps "$@"', desc = "wps", block = true, for = "unix" },# 使用gtk-launch解决缩放问题
 ]
 sheet = [
   { run = 'tw "$@"', desc = "tabiew", block = true, for = "unix" },
+  { run = 'gtk-launch wps-office-wps "$@"', desc = "wps", block = true, for = "unix" },# 使用gtk-launch解决缩放问题
+]
+ppt = [
+  { run = 'gtk-launch wps-office-wpp "$@"', desc = "wps", block = true, for = "unix" },# 使用gtk-launch解决缩放问题
 ]
 
 # image open
@@ -52,6 +57,11 @@ use = ["doc","open","reveal"]
 [[open.prepend_rules]]
 url = "*.{csv,tsv,xlsx,xls,xlsx,xlsm,xlsb,db,sqlite}"
 use = ["sheet","open","reveal"]
+
+# ppt open
+[[open.prepend_rules]]
+url = "*.{ppt,pptx}"
+use = ["ppt","open","reveal"]
 
 # git
 [[plugin.prepend_fetchers]]
@@ -93,7 +103,7 @@ run = "eza-preview"
 ## doc
 [[plugin.prepend_previewers]]
 url = "*.docx"
-run = "docx"
+run = "docx-preview"
 
 # --- mediainfo prepend_preloaders ---
 
